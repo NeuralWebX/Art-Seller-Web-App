@@ -65,7 +65,7 @@ class ACMController extends Controller
      */
     public function edit(string $id)
     {
-        $role = Role::find($id);
+        $role = Role::where('slug',$id)->first();
         $modules = Module::with('permissions')->get();
         return view('backend.pages.acm.edit',compact('role','modules'));
     }
@@ -78,7 +78,7 @@ class ACMController extends Controller
         $request->validate([
             'name' => 'required|unique:roles,name,' . $id
         ]);
-        $role = Role::where('id',$id)->first();
+        $role = Role::where('slug',$id)->first();
         if(!$role){
             return redirect()->back();
         }
@@ -96,7 +96,7 @@ class ACMController extends Controller
     public function destroy(string $id)
     {
         try{
-            $role = Role::where('id',$id)->where('id', '!=', 1)->first();
+            $role = Role::where('slug',$id)->where('id', '!=', 1)->first();
             if(!$role){
                 return redirect()->back();
             }

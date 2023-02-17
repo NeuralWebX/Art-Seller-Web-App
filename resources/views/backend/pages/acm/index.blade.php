@@ -21,10 +21,10 @@
                 <td scope="row">{{ $item->name }}</td>
                 <td>{{ $item->slug }}</td>
                 <td>
-                    <a href="{{ route('backend.role-permission.edit',$item->id) }}" class="btn btn-primary">
+                    <a href="{{ route('backend.role-permission.edit',$item->slug) }}" class="btn btn-primary">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a href="{{ route('backend.role-permission.destroy',$item->id) }}" class="btn btn-danger">
+                    <a href="{{ route('backend.role-permission.destroy',$item->slug) }}" class="btn btn-danger">
                         <i class="fa-solid fa-trash-can"></i>
                     </a>
                 </td>
