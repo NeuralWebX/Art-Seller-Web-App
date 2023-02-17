@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Models\User;
-use App\Models\Department;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
