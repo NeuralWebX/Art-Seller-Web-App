@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BackendController extends Controller
@@ -31,7 +32,7 @@ class BackendController extends Controller
         }
     }
     public function logout(){
-        auth()->logout();
+        Auth::logout();;
         Session::flush();
         return to_route('backend.auth.login');
     }
