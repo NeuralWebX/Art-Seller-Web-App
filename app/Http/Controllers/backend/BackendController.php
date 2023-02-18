@@ -32,8 +32,7 @@ class BackendController extends Controller
         }
     }
     public function logout(){
-        Auth::logout();
-        Session::flush();
+        auth()->logout();
         return to_route('backend.auth.login');
     }
 }
