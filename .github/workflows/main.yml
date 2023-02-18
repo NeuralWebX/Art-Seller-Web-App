@@ -19,6 +19,6 @@ jobs:
           password: ${{ secrets.ftp_password }}
           server-dir: /
       - name: 🎉 Running Composer update
-        uses: php-actions/composer@v6
+        uses: "ramsey/composer-install@v2"
         with:
-          command: composer update --ignore-platform-reqs
+          composer-options: "--ignore-platform-reqs --optimize-autoloader"
