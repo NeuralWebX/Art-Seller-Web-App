@@ -6,18 +6,18 @@
                     <a href="{{ route('backend.index') }}">
                         {{-- <img style="width:80%;" src="{{ url('/uploads/settings/',settings()->logo) }}"
                             alt="{{ settings()->name }}" srcset=""> --}}
-                           <span class="font-weight-bold"> {{ settings()->name }}</span>
+                        <span class="font-weight-bold"> {{ settings()->name }}</span>
                     </a>
                 </div>
                 <li>
                     <a href="{{ route('backend.index') }}"><i class="ti-home"></i> Dashboard </a>
                 </li>
-                @if (hasAnyPermissions('backend.role-permission.index'))
+                @permission('backend.role-permission.index')
                 <li>
                     <a href="{{ route('backend.role-permission.index') }}"><i class="fa-solid fa-user-secret"></i></i>
                         Access Control </a>
                 </li>
-                @endif
+                @endpermission
                 {{-- @if (hasAnyPermissions('backend.user.index')) --}}
                 @permission('backend.user.index')
                 <li>
@@ -25,12 +25,12 @@
                         User </a>
                 </li>
                 @endpermission
-                @if (hasAnyPermissions('backend.settings.index'))
+                @permission('backend.settings.index')
                 <li>
                     <a href="{{ route('backend.settings.index') }}"><i class="fa-solid fa-gear"></i></i>
                         Settings </a>
                 </li>
-                @endif
+                @endpermission
             </ul>
         </div>
     </div>
