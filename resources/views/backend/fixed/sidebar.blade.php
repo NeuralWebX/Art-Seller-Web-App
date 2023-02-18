@@ -18,12 +18,13 @@
                         Access Control </a>
                 </li>
                 @endif
-                @if (hasAnyPermissions('backend.user.index'))
+                {{-- @if (hasAnyPermissions('backend.user.index')) --}}
+                @permission('backend.user.index')
                 <li>
                     <a href="{{ route('backend.user.index') }}"><i class="fa-solid fa-user"></i></i>
                         User </a>
                 </li>
-                @endif
+                @endpermission
                 @if (hasAnyPermissions('backend.settings.index'))
                 <li>
                     <a href="{{ route('backend.settings.index') }}"><i class="fa-solid fa-gear"></i></i>
