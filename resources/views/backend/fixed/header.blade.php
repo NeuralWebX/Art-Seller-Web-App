@@ -183,7 +183,7 @@
                                                 <span>Lock Screen</span>
                                             </a>
                                         </li>
-                                        <li onclick="location.href='{{ route('backend.auth.login') }}'">
+                                        <li onclick="location.href='{{ route('backend.logout') }}'">
                                             <a href="{{ route('backend.logout') }}">
                                                 <i class="ti-power-off"></i>
                                                 <span>Logout</span>
