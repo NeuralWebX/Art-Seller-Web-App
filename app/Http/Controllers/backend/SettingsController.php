@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class SettingsController extends Controller
@@ -24,6 +25,7 @@ class SettingsController extends Controller
             'facebook'=>'required',
         ]);
         if($validate->fails()){
+            Alert::error('Settings update failed');
             return redirect()->back()->withErrors($validate)->withInput();
         }
         $logo = settings()->logo;
@@ -46,6 +48,7 @@ class SettingsController extends Controller
             'linkedin'=>$request->linkedin,
             'facebook'=>$request->facebook,
         ]);
+        Alert::success('Settings has been updated');
         return to_route('backend.settings.index');
     }
 }

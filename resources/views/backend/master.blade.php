@@ -113,8 +113,8 @@
             $('#datatables').DataTable();
         });
     </script>
-    {{-- @include('sweetalert::alert')
-    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"]) --}}
+    @include('sweetalert::alert')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     @yield('admin.master.js')
     @if (env('APP_ENV') == 'production')
     <script>
@@ -190,8 +190,6 @@
                 console.error(error);
             });
     </script>
-    {{-- @include('sweetalert::alert')
-    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"]) --}}
 
 </body>
 

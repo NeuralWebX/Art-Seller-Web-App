@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -42,6 +43,7 @@ class UserController extends Controller
             'image'=>'required',
         ]);
         if($validate->fails()){
+            Alert::error('User Created failed');
             return back()->withErrors($validate->errors())->withInput();
         }
         $image_name = null;
@@ -62,6 +64,7 @@ class UserController extends Controller
             'password'=>bcrypt('password'),
             'image'=>$image_name,
         ]);
+        Alert::success('User Created Success');
         return to_route('backend.user.index');
     }
 
@@ -122,6 +125,7 @@ class UserController extends Controller
             'password'=>$password,
             'image'=>$image_name,
         ]);
+        Alert::success('User Updated Success');
         return to_route('backend.user.index');
     }
 
@@ -131,6 +135,7 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::find($id)->delete();
+        Alert::success('User Deleted Success');
         return to_route('backend.user.index');
     }
 }

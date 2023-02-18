@@ -4,12 +4,13 @@ namespace App\Http\Controllers\backend;
 
 use App\Models\Role;
 use App\Models\Module;
+use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
 use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ACMController extends Controller
 {
@@ -46,8 +47,10 @@ class ACMController extends Controller
                 'slug'=> Str::slug($request->name),
             ]);
             $role->permissions()->sync($request->permission_ids);
+            Alert::success('Role Created Success');
             return redirect()->route('backend.role-permission.index');
         }catch (\Throwable $throwable){
+            Alert::error('Role Created Failed');
             return redirect()->back()->withErrors($throwable->getMessage())->withInput();
         }
     }
@@ -80,6 +83,7 @@ class ACMController extends Controller
         ]);
         $role = Role::where('slug',$id)->first();
         if(!$role){
+            Alert::success('Role Update Failed');
             return redirect()->back();
         }
         $role->update([
@@ -87,6 +91,7 @@ class ACMController extends Controller
             'slug'=> Str::slug($request->name),
         ]);
         $role->permissions()->sync($request->permission_ids);
+        Alert::success('Role Update Success');
         return redirect()->route('backend.role-permission.index');
     }
 
@@ -101,11 +106,13 @@ class ACMController extends Controller
                 return redirect()->back();
             }
             $role->delete();
+            Alert::success('Role Delete Success');
             return redirect()->back();
 
         }catch(\Throwable $throwable){
             if($throwable->getCode() == 23000){
            }
+           Alert::success('Role Delete Failed');
             return redirect()->back();
         }
     }
