@@ -66,13 +66,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Instructions
+
 ### Run those commands in the terminal
+
 ```
-git clone git@github.com:imhayatunnabi/Admin-Panel-With-Access-Controll.git
+git clone repo
 ```
 
 ```
-cd Admin-Panel-With-Access-Controll
+cd project-directory
 ```
 
 ```
@@ -97,8 +99,8 @@ DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
 ```
-### Run those commands in the terminal
 
+### Run those commands in the terminal
 
 ```
 php artisan migrate
@@ -115,4 +117,16 @@ php artisan db:seed
 ```
 Login Email: super-admin@neuralwebx.com
 Login Password: 123456
+```
+
+## Custom command to create repository for model
+
+```
+php artisan make:repository RepositoryName ModelName
+```
+
+## Custom command to create blade
+
+```
+php artisan make:view BladeName
 ```
