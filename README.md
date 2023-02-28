@@ -119,13 +119,13 @@ Login Email: super-admin@neuralwebx.com
 Login Password: 123456
 ```
 
-## Custom command to create repository for model
+### Custom command to create repository for model
 
 ```
 php artisan make:repository RepositoryName ModelName
 ```
 
-## Custom command to create blade
+### Custom command to create blade
 
 ```
 php artisan make:view BladeName
