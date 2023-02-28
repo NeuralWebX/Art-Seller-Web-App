@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\ACMController;
-use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\BackendController;
-use App\Http\Controllers\backend\DivisionController;
 use App\Http\Controllers\backend\SettingsController;
-use App\Http\Controllers\backend\DepartmentController;
 use App\Http\Controllers\backend\UserController;
 
 /*
