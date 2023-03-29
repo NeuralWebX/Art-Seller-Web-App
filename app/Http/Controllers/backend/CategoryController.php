@@ -2,16 +2,34 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
-use App\Models\Category;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Repository\CategoryRepository;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
+    /**
+     * The category repository instance.
+     *
+     * @var \App\Repositories\CategoryRepository
+     */
+    protected $categories;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param  \App\Repositories\CategoryRepository  $categories
+     * @return void
+     */
+    public function __construct(CategoryRepository $categories)
+    {
+        $this->categories = $categories;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -35,23 +53,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $category_number = 'category-' . getNumber();
-        $categoryExists = Category::where('category_number', $category_number)->exists();
-        if ($categoryExists) {
-            $category_number = 'category-' . getNumber();
-        }
-        $image_name = null;
-        if ($request->hasFile('category_image')) {
-            $image_name = date('Ymdhsis') . '.' . $request->file('category_image')->getClientOriginalExtension();
-            $request->file('category_image')->storeAs('/uploads/category', $image_name);
-        }
-        Category::create([
-            'category_name' => $request->category_name,
-            'category_details' => $request->category_details,
-            'category_number' => $category_number,
-            'category_image' => $image_name,
-            'category_status' => $request->category_status,
-        ]);
+        $this->categories->create($request);
         alert()->success('Category Created Successfully');
         return to_route('backend.category.index');
     }
@@ -81,17 +83,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         try {
-            $image_name = $category->category_image;
-            if ($request->hasFile('category_image')) {
-                $image_name = date('Ymdhsis') . '.' . $request->file('category_image')->getClientOriginalExtension();
-                $request->file('category_image')->storeAs('/uploads/category', $image_name);
-            }
-            $category->update([
-                'category_name' => $request->category_name,
-                'category_details' => $request->category_details,
-                'category_image' => $image_name,
-                'category_status' => $request->category_status,
-            ]);
+            $this->categories->update($request, $category);
             alert()->success('Category Updated Successfully');
             return to_route('backend.category.index');
         } catch (\Throwable $th) {
