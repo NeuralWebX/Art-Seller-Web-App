@@ -34,7 +34,7 @@ class ProductRepository
             'user_id' => auth()->user()->id,
             'product_image' => $image_name,
             'product_price' => $request->product_price,
-            'product_status' => $request->product_status,
+            'product_status' => $request->product_status ? $request->product_status : 0,
         ]);
     }
 
@@ -59,7 +59,7 @@ class ProductRepository
             'product_details' => $request->product_details,
             'product_image' => $image_name,
             'product_price' => $request->product_price,
-            'product_status' => $request->product_status,
+            'product_status' => $request->product_status ? $request->product_status : 0,
         ]);
     }
 }

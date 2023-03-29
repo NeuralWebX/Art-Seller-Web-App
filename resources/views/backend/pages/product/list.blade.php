@@ -29,7 +29,7 @@
                 <td>{{ $item->product_number }}</td>
                 <td>{{ $item->product_name }}</td>
                 <td><img width="60px" src="{{ $item->product_image }}" alt="{{ $item->product_name }}"></td>
-                <td>{{ $item->product_price }}</td>
+                <td>{{ number_format($item->product_price, 2) }} <span class="text-danger font-italic">BDT.</span></td>
                 <td>{{ $item->category->category_name }}</td>
                 <td>{{ $item->user->name }}</td>
                 <td>{{ $item->updated_at->format('Y-m-d') }}</td>

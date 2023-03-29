@@ -18,8 +18,6 @@
         @enderror
     </p>
 </div>
-@if (Route::is('backend.product.edit'))
-
 <div class="mb-3">
     <label for="" class="form-label">Product Category</label>
     <select name="category_id" id="category_id" class="form-control">
@@ -35,7 +33,6 @@
         @enderror
     </p>
 </div>
-@endif
 <div class="mb-3">
     <label for="" class="form-label">Product Description</label>
     <input type="text" class="form-control" name="product_details" id="product_details"
@@ -56,6 +53,7 @@
         @enderror
     </p>
 </div>
+@if (Route::is('backend.product.edit'))
 <div class="mb-3">
     <label for="" class="form-label">Product Status</label>
     <select name="product_status" id="" class="form-control">
@@ -68,6 +66,7 @@
         @enderror
     </p>
 </div>
+@endif
 <div class="mt-3">
     <a href="javascript:history.back()" class="btn btn-danger">Cancel</a>
     <button type="submit" class="btn btn-primary">Submit</button>
