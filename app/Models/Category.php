@@ -22,9 +22,11 @@ class Category extends Model
     }
     public function getCategoryImageAttribute()
     {
-        $categoryImage = $this->attributes['category_image'];
-        if ($categoryImage) {
-            return asset('uploads/category/' . $categoryImage);
+        if (array_key_exists('category_image', $this->attributes)) {
+            $categoryImage = $this->attributes['category_image'];
+            if ($categoryImage) {
+                return asset('uploads/category/' . $categoryImage);
+            }
         }
         return null;
     }
