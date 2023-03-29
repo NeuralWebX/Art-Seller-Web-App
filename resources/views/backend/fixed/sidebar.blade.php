@@ -25,6 +25,14 @@
                         User </a>
                 </li>
                 @endpermission
+                @permission('backend.category.index')
+                <li>
+                    <a href="{{ route('backend.category.index') }}">
+                        <i class="fa fa-paperclip" aria-hidden="true"></i>
+                        Category
+                    </a>
+                </li>
+                @endpermission
                 @permission('backend.settings.index')
                 <li>
                     <a href="{{ route('backend.settings.index') }}"><i class="fa-solid fa-gear"></i></i>
@@ -35,4 +43,5 @@
         </div>
     </div>
 </div>
+
 <!-- /# sidebar -->

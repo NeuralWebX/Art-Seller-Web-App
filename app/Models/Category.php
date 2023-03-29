@@ -20,4 +20,12 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'category_id', 'id');
     }
+    public function getCategoryImageAttribute()
+    {
+        $categoryImage = $this->attributes['category_image'];
+        if ($categoryImage) {
+            return asset('uploads/category/' . $categoryImage);
+        }
+        return null;
+    }
 }

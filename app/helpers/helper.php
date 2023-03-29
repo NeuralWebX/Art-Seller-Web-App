@@ -46,3 +46,10 @@ if (!function_exists('settings')) {
         return Settings::first();
     }
 }
+if (!function_exists('getNumber')) {
+    function getNumber()
+    {
+        $number = substr(uniqid(), 0, 6);
+        return $number;
+    }
+}

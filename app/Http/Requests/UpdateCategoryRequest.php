@@ -24,7 +24,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'category_name' => 'required|max:255',
             'category_details' => 'required|max:255',
-            'category_image' => 'required|image',
+            'category_image' => 'sometimes|image',
             'category_status' => 'required|numeric|min:0|max:1',
         ];
     }

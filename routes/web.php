@@ -30,14 +30,28 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::put('/update', [SettingsController::class, 'update'])->name('update');
     });
-    Route::resource('user', UserController::class);
-    Route::resource('role-permission', ACMController::class);
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/store', [UserController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('role-permission')->name('role-permission.')->group(function () {
+        Route::get('/', [ACMController::class, 'index'])->name('index');
+        Route::get('/create', [ACMController::class, 'create'])->name('create');
+        Route::post('/store', [ACMController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ACMController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [ACMController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [ACMController::class, 'delete'])->name('destroy');
+    });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/create', [CategoryController::class, 'create'])->name('create');
-        Route::get('/store', [CategoryController::class, 'store'])->name('store');
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('edit');
-        Route::get('/update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
         Route::get('/destroy/{category}', [CategoryController::class, 'destroy'])->name('destroy');
     });
     Route::prefix('product')->name('product.')->group(function () {

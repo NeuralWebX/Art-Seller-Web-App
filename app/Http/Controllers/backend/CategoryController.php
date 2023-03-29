@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('backend.pages.category.list',compact('categories'));
+        return view('backend.pages.category.list', compact('categories'));
     }
 
     /**
@@ -35,6 +35,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $category_number = 'category-' . getNumber();
+        $categoryExists = Category::where('category_number', $category_number)->exists();
+        if ($categoryExists) {
+            $category_number = 'category-' . getNumber();
+        }
         $image_name = null;
         if ($request->hasFile('category_image')) {
             $image_name = date('Ymdhsis') . '.' . $request->file('category_image')->getClientOriginalExtension();
@@ -43,6 +48,7 @@ class CategoryController extends Controller
         Category::create([
             'category_name' => $request->category_name,
             'category_details' => $request->category_details,
+            'category_number' => $category_number,
             'category_image' => $image_name,
             'category_status' => $request->category_status,
         ]);
