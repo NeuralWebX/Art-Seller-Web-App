@@ -31,6 +31,7 @@ class ProductRepository
             'category_id' => $request->category_id,
             'product_details' => $request->product_details,
             'product_number' => $product_number,
+            'user_id' => auth()->user()->id,
             'product_image' => $image_name,
             'product_price' => $request->product_price,
             'product_status' => $request->product_status,
@@ -54,6 +55,7 @@ class ProductRepository
         $product->update([
             'product_name' => $request->product_name,
             'category_id' => $request->category_id,
+            'user_id' => auth()->user()->id,
             'product_details' => $request->product_details,
             'product_image' => $image_name,
             'product_price' => $request->product_price,

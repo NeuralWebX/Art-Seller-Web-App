@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Role;
+use App\Models\Category;
 use App\Models\Settings;
 use Illuminate\Support\Facades\Route;
 
@@ -51,5 +52,12 @@ if (!function_exists('getNumber')) {
     {
         $number = substr(uniqid(), 0, 6);
         return $number;
+    }
+}
+if (!function_exists('categories')) {
+    function categories()
+    {
+        $categories = Category::all();
+        return $categories;
     }
 }

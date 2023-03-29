@@ -57,9 +57,9 @@ Route::name('backend.')->middleware('auth')->group(function () {
     Route::prefix('product')->name('product.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
-        Route::get('/store', [ProductController::class, 'store'])->name('store');
+        Route::post('/store', [ProductController::class, 'store'])->name('store');
         Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('edit');
-        Route::get('/update/{product}', [ProductController::class, 'update'])->name('update');
+        Route::put('/update/{product}', [ProductController::class, 'update'])->name('update');
         Route::get('/destroy/{product}', [ProductController::class, 'destroy'])->name('destroy');
     });
 });

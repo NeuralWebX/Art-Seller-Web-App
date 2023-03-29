@@ -33,6 +33,14 @@
                     </a>
                 </li>
                 @endpermission
+                @permission('backend.product.index')
+                <li>
+                    <a href="{{ route('backend.product.index') }}">
+                        <i class="fa-solid fa-carrot"></i>
+                        Product
+                    </a>
+                </li>
+                @endpermission
                 @permission('backend.settings.index')
                 <li>
                     <a href="{{ route('backend.settings.index') }}"><i class="fa-solid fa-gear"></i></i>

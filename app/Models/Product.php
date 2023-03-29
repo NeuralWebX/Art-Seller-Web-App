@@ -30,4 +30,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+    public function getProductImageAttribute()
+    {
+        if (array_key_exists('product_image', $this->attributes)) {
+            $productImage = $this->attributes['product_image'];
+            if ($productImage) {
+                return asset('uploads/product/' . $productImage);
+            }
+        }
+        return null;
+    }
 }
