@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('updated_at','DESC')->get();
         return view('backend.pages.product.list', compact('products'));
     }
 

@@ -18,6 +18,8 @@
         @enderror
     </p>
 </div>
+@if (Route::is('backend.product.edit'))
+
 <div class="mb-3">
     <label for="" class="form-label">Product Category</label>
     <select name="category_id" id="category_id" class="form-control">
@@ -33,6 +35,7 @@
         @enderror
     </p>
 </div>
+@endif
 <div class="mb-3">
     <label for="" class="form-label">Product Description</label>
     <input type="text" class="form-control" name="product_details" id="product_details"

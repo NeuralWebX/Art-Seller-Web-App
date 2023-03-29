@@ -15,6 +15,9 @@
                 <th scope="col">Product Name</th>
                 <th scope="col">Product Image</th>
                 <th scope="col">Product Price</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Product Author</th>
+                <th scope="col">Product Uploaded</th>
                 <th scope="col">Product Status</th>
                 <th scope="col">Action</th>
             </tr>
@@ -27,7 +30,10 @@
                 <td>{{ $item->product_name }}</td>
                 <td><img width="60px" src="{{ $item->product_image }}" alt="{{ $item->product_name }}"></td>
                 <td>{{ $item->product_price }}</td>
-                <td>{{ $item->product_status == 1?'Active':'Inactive' }}</td>
+                <td>{{ $item->category->category_name }}</td>
+                <td>{{ $item->user->name }}</td>
+                <td>{{ $item->updated_at->format('Y-m-d') }}</td>
+                <td>{{ $item->product_status == 1?'Sold':'Unsold' }}</td>
                 <td>
                     <a href="{{ route('backend.product.edit',$item->id) }}" class="btn btn-primary"><i
                             class="fa fa-pencil-square" aria-hidden="true"></i>

@@ -27,7 +27,6 @@ class StoreProductRequest extends FormRequest
             'category_id' => 'required|numeric|exists:categories,id',
             'product_price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
             'product_image' => 'required|image',
-            'product_status' => 'required|numeric|min:0|max:1',
         ];
     }
 }
