@@ -70,11 +70,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### Run those commands in the terminal
 
 ```
-git clone repo
+git clone git@github.com:imhayatunnabi/Art-Seller-Web-App.git
 ```
 
 ```
-cd project-directory
+cd Art-Seller-Web-App
 ```
 
 ```
@@ -83,10 +83,6 @@ composer install
 
 ```
 cp .env.example .env
-```
-
-```
-php artisan key:generate
 ```
 
 ## connect the database from env
@@ -118,6 +114,7 @@ php artisan db:seed
 Login Email: super-admin@neuralwebx.com
 Login Password: 123456
 ```
+## Optional Command
 
 ### Custom command to create repository for model
 
