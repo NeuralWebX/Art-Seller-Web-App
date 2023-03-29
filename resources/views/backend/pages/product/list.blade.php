@@ -11,14 +11,14 @@
         <thead>
             <tr>
                 <th scope="col">#Sl</th>
-                <th scope="col">Product Number</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Product Image</th>
-                <th scope="col">Product Price</th>
-                <th scope="col">Product Category</th>
-                <th scope="col">Product Author</th>
-                <th scope="col">Product Uploaded</th>
-                <th scope="col">Product Status</th>
+                <th scope="col"> Number</th>
+                <th scope="col"> Name</th>
+                <th scope="col"> Image</th>
+                <th scope="col"> Price</th>
+                <th scope="col"> Category</th>
+                <th scope="col"> Author</th>
+                <th scope="col"> Uploaded</th>
+                <th scope="col"> Status</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -35,6 +35,9 @@
                 <td>{{ $item->updated_at->format('Y-m-d') }}</td>
                 <td>{{ $item->product_status == 1?'Sold':'Unsold' }}</td>
                 <td>
+                    <a href="{{ route('backend.product.show',$item->id) }}" class="btn btn-primary">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
                     <a href="{{ route('backend.product.edit',$item->id) }}" class="btn btn-primary"><i
                             class="fa fa-pencil-square" aria-hidden="true"></i>
                     </a>

@@ -60,6 +60,7 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::post('/store', [ProductController::class, 'store'])->name('store');
         Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('edit');
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('update');
+        Route::get('/show/{product}', [ProductController::class, 'show'])->name('show');
         Route::get('/destroy/{product}', [ProductController::class, 'destroy'])->name('destroy');
     });
 });

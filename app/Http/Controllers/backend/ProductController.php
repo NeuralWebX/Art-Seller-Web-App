@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('updated_at','DESC')->get();
+        $products = Product::orderBy('updated_at', 'DESC')->get();
         return view('backend.pages.product.list', compact('products'));
     }
 
@@ -54,7 +54,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->products->show($id);
+        return view('backend.pages.product.show', compact('product'));
     }
 
     /**

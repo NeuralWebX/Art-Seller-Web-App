@@ -62,4 +62,13 @@ class ProductRepository
             'product_status' => $request->product_status ? $request->product_status : 0,
         ]);
     }
+    public function show($id)
+    {
+        $product = Product::find($id);
+        try {
+            return $product;
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
 }
