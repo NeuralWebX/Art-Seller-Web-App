@@ -11,12 +11,12 @@ class SslCommerzPaymentController extends Controller
 
     public function exampleEasyCheckout()
     {
-        return view('exampleEasycheckout');
+        return view('ssl.exampleEasycheckout');
     }
 
     public function exampleHostedCheckout()
     {
-        return view('exampleHosted');
+        return view('ssl.exampleHosted');
     }
 
     public function index(Request $request)
