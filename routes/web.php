@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\ACMController;
+use App\Http\Controllers\backend\ShopController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\BackendController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\CategoryController;
-use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\SettingsController;
-use App\Http\Controllers\backend\ShopController;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,15 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::get('/{product}', [OrderController::class, 'index'])->name('index');
         Route::post('/place/{product}', [OrderController::class, 'order'])->name('order');
     });
+    // SSLCOMMERZ Start
     Route::prefix('online-pay')->name('onlinePay.')->group(function () {
+        Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('exampleEasyCheckout');
+        Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('exampleHostedCheckout');
+        Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('payNow');
+        Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('payViaAjax');
+        Route::post('/success', [SslCommerzPaymentController::class, 'success'])->name('success');
+        Route::post('/fail', [SslCommerzPaymentController::class, 'fail'])->name('fail');
+        Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel'])->name('cancel');
+        Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn'])->name('ipn');
     });
 });
