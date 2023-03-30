@@ -39,7 +39,7 @@ class RepositoyCreate extends Command
             return;
         }
         $content = '<?php' . PHP_EOL
-            . 'namespace App\Repository;' . PHP_EOL
+            . 'namespace App\Http\Repository;' . PHP_EOL
             // . "use App\Models\{$model};" . PHP_EOL
             . "class {$repository} {" . PHP_EOL
             . '    // Add your custom code here' . PHP_EOL

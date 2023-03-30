@@ -22,7 +22,7 @@ return new class extends Migration
                 ->restrictOnDelete();
             $table->string('product_details');
             $table->string('product_number');
-            $table->double('product_price', 8, 2);
+            $table->decimal('product_price', 8, 2);
             $table->string('product_image');
             $table->boolean('product_status')->default(0);
             $table->timestamps();
