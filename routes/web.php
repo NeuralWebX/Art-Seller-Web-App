@@ -6,7 +6,9 @@ use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\BackendController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\CategoryController;
+use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\SettingsController;
+use App\Http\Controllers\backend\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,5 +64,15 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('update');
         Route::get('/show/{product}', [ProductController::class, 'show'])->name('show');
         Route::get('/destroy/{product}', [ProductController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('shop')->name('shop.')->group(function () {
+        Route::get('/', [ShopController::class, 'index'])->name('index');
+        Route::get('/preview/{product}', [ShopController::class, 'preview'])->name('preview');
+    });
+    Route::prefix('order')->name('order.')->group(function () {
+        Route::get('/{product}', [OrderController::class, 'index'])->name('index');
+        Route::post('/place/{product}', [OrderController::class, 'order'])->name('order');
+    });
+    Route::prefix('online-pay')->name('onlinePay.')->group(function () {
     });
 });

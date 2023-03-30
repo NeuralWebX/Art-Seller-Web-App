@@ -55,7 +55,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = $this->products->show($id);
-        return view('backend.pages.product.show', compact('product'));
+        $products = $this->products->relatedProduct($product->category_id);
+        return view('backend.pages.product.show', compact('product', 'products'));
     }
 
     /**

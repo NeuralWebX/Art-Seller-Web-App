@@ -71,4 +71,10 @@ class ProductRepository
             return $th->getMessage();
         }
     }
+    public function relatedProduct($id)
+    {
+        $products = Product::where('category_id', $id)
+            ->get();
+        return $products;
+    }
 }

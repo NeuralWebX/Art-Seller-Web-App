@@ -3,7 +3,7 @@
 <div class="mx-auto">
     <h4 class="text-primary text-center">Product Preview</h4>
 </div>
-<div class="container mt-5 mb-5">
+{{-- <div class="container mt-5 mb-5">
     <div class="card">
         <div class="row g-0">
             <div class="col-md-6 border-end">
@@ -29,6 +29,53 @@
                 </div>
             </div>
         </div>
+    </div>
+</div> --}}
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ $product->product_image }}" class="card-img" alt="{{ $product->product_name }}">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <h5 class="card-title">{{ $product->product_name }}</h5>
+                <p class="card-text">{{ $product->product_details }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{{ route('backend.product.edit',$product->id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('backend.product.destroy',$product->id) }}" class="btn btn-danger">Delete</a>
+                    </div>
+                    <small class="text-primary">SKU: XXXX | Category: {{ $product->category->category_name }} |
+                        Availability: {{ $product->product_status == 0?'In Stock':'Sold' }}</small>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text"><strong>Price:</strong> {{ number_format($product->product_price,2) }} BDT.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mx-auto">
+    <h4 class="text-primary text-center">Related Product</h4>
+</div>
+<div class="container">
+    <div class="row">
+        @foreach ($products as $item)
+        <div class="col-md-4" onclick="location.href='{{ route('backend.product.show',$item->id) }}'">
+            <div class="card text-white">
+                <img class="card-img-top" src="{{ $item->product_image }}" alt="Title">
+                <div class="card-body">
+                    <h4 class="card-title">{{ $item->product_name }}</h4>
+                    <p class="card-text">{{ number_format($item->product_price,2) }} BDT.</p>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
 </div>
 @endsection
