@@ -8,6 +8,11 @@ use App\Http\Requests\UpdateProductRequest;
 
 class ProductRepository
 {
+    public function index()
+    {
+        $products = Product::all();
+        return $products;
+    }
     /**
      * Create a new product.
      *

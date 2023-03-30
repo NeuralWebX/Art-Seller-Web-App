@@ -43,8 +43,12 @@
                 <p class="card-text">{{ $product->product_details }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
+                        @permission('backend.product.edit')
                         <a href="{{ route('backend.product.edit',$product->id) }}" class="btn btn-primary">Edit</a>
+                        @endpermission
+                        @permission('backend.product.destroy')
                         <a href="{{ route('backend.product.destroy',$product->id) }}" class="btn btn-danger">Delete</a>
+                        @endpermission
                     </div>
                     <small class="text-primary">SKU: XXXX | Category: {{ $product->category->category_name }} |
                         Availability: {{ $product->product_status == 0?'In Stock':'Sold' }}</small>

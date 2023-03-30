@@ -12,6 +12,14 @@
                 <li>
                     <a href="{{ route('backend.index') }}"><i class="ti-home"></i> Dashboard </a>
                 </li>
+                @permission('backend.shop.index')
+                <li>
+                    <a href="{{ route('backend.shop.index') }}">
+                        <i class="fa-brands fa-envira"></i>
+                        Shop
+                    </a>
+                </li>
+                @endpermission
                 @permission('backend.role-permission.index')
                 <li>
                     <a href="{{ route('backend.role-permission.index') }}"><i class="fa-solid fa-user-secret"></i></i>

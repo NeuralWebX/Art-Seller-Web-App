@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Repository\ProductRepository;
 use App\Library\SslCommerz\SslCommerzNotification;
 
 class SslCommerzPaymentController extends Controller
 {
-
-    public function exampleEasyCheckout()
+    protected $products;
+    public function __construct(ProductRepository $products)
     {
-        return view('ssl.exampleEasycheckout');
+        $this->products = $products;
+    }
+    public function exampleEasyCheckout($id)
+    {
+        $product = $this->products->show($id);
+        return view('ssl.exampleEasycheckout', compact('product'));
     }
 
-    public function exampleHostedCheckout()
+    public function exampleHostedCheckout($id)
     {
         return view('ssl.exampleHosted');
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
         # Here you have to receive all the order data to initate the payment.
         # Let's say, your oder transaction informations are saving in a table called "orders"
@@ -85,7 +91,6 @@ class SslCommerzPaymentController extends Controller
             print_r($payment_options);
             $payment_options = array();
         }
-
     }
 
     public function payViaAjax(Request $request)
@@ -156,7 +161,6 @@ class SslCommerzPaymentController extends Controller
             print_r($payment_options);
             $payment_options = array();
         }
-
     }
 
     public function success(Request $request)
@@ -198,8 +202,6 @@ class SslCommerzPaymentController extends Controller
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
-
-
     }
 
     public function fail(Request $request)
@@ -220,7 +222,6 @@ class SslCommerzPaymentController extends Controller
         } else {
             echo "Transaction is Invalid";
         }
-
     }
 
     public function cancel(Request $request)
@@ -241,8 +242,6 @@ class SslCommerzPaymentController extends Controller
         } else {
             echo "Transaction is Invalid";
         }
-
-
     }
 
     public function ipn(Request $request)
@@ -287,5 +286,4 @@ class SslCommerzPaymentController extends Controller
             echo "Invalid Data";
         }
     }
-
 }
