@@ -10,7 +10,7 @@ class UserRepository
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('updated_at','DESC')->get();
         return $users;
     }
     public function find($id)

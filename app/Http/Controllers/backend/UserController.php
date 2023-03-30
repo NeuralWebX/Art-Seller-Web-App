@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\backend;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Repository\UserRepository;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -23,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->get();
+        $users = $this->users->index();
         return view('backend.pages.user.index', compact('users'));
     }
 
@@ -42,7 +39,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $this->users->store($request);
-        Alert::success('User Created Success');
+        alert()->success('User Created Success');
         return to_route('backend.user.index');
     }
 
@@ -51,7 +48,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = $this->users->find($id);
+        return view('backend.pages.user.show', compact('user'));
     }
 
     /**
@@ -69,9 +67,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request,  $id)
     {
-        $user = User::find($id);
+        $user = $this->users->find($id);
         $this->users->update($request, $user);
-        Alert::success('User Updated Success');
+        alert()->success('User Updated Success');
         return to_route('backend.user.index');
     }
 
@@ -80,8 +78,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        Alert::success('User Deleted Success');
+        $user = $this->users->find($id)->delete();
+        alert()->success('User Deleted Success');
         return to_route('backend.user.index');
     }
 }
