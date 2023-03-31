@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->string('amount');
-            $table->string('transaction_id');
-            $table->string('currency');
-            $table->string('order_status');
-            $table->string('payment_status');
-            $table->string('payment_method');
+            $table->double('amount',15,2)->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->string('currency')->nullable();
+            $table->string('order_status')->nullable();
+            $table->string('payment_status')->nullable();
+            $table->string('payment_method')->nullable();
             $table->timestamps();
         });
     }

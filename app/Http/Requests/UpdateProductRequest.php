@@ -25,7 +25,7 @@ class UpdateProductRequest extends FormRequest
             'product_name' => 'required|max:255',
             'product_details' => 'required|max:255',
             'category_id' => 'required|numeric|exists:categories,id',
-            'product_price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+            'product_price' => 'required|regex:/^\d{1,15}(\.\d{1,2})?$/|numeric',
             'product_image' => 'sometimes|image',
             'product_status' => 'required|numeric|min:0|max:1',
         ];
