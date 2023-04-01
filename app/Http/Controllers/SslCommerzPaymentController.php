@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\OrderRequest;
 use App\Http\Repository\ProductRepository;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Transaction;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -91,6 +92,12 @@ class SslCommerzPaymentController extends Controller
             'quantity' => 1,
             'unit_price' => $post_data['total_amount'],
             'sub_total' => $post_data['total_amount'] * 1,
+        ]);
+        $transaction = Transaction::create([
+            'author_id' => $product->user_id,
+            'order_id' => $order->id,
+            'artist_payable' => $post_data['total_amount'] * 80 / 100,
+            'admin_payable' => $post_data['total_amount'] * 20 / 100,
         ]);
         $product->update([
             'product_status' => 1,
