@@ -38,4 +38,10 @@ class OrderController extends Controller
             ->get();
         return response()->json($orders);
     }
+    public function invoice($id)
+    {
+        $order = Order::with('orderDetails', 'orderDetails.product')->find($id);
+        $pdf = PDF::loadView('orders.pdf', $order);
+        return $pdf->download('order.pdf');
+    }
 }

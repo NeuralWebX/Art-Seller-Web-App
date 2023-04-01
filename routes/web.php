@@ -91,6 +91,7 @@ Route::name('backend.')->middleware('auth')->group(function () {
     });
     Route::prefix('order-management')->name('order.management.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/invoice/{order_id}', [OrderController::class, 'invoice'])->name('invoice');
         Route::get('/by-author/{author_id}', [OrderController::class, 'byAuthor'])->name('byAuthor');
     });
     Route::prefix('transaction')->name('transaction.')->group(function () {
