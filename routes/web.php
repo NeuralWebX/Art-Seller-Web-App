@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\BackendController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\SettingsController;
+use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\SslCommerzPaymentController;
 
 /*
@@ -25,6 +26,8 @@ use App\Http\Controllers\SslCommerzPaymentController;
 Route::prefix('authenticate')->name('backend.auth.')->group(function () {
     Route::get('/login', [BackendController::class, 'login'])->name('login');
     Route::post('/login-submit', [BackendController::class, 'loginSubmit'])->name('login.submit');
+    Route::get('/registration', [AuthController::class, 'regForm'])->name('regForm');
+    Route::get('/registration-submit', [AuthController::class, 'registration'])->name('regForm');
 });
 Route::name('backend.')->middleware('auth')->group(function () {
     Route::get('/logout', [BackendController::class, 'logout'])->name('logout');
