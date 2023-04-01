@@ -27,6 +27,7 @@ return new class extends Migration
                 ->restrictOnDelete();
             $table->double('amount', 15, 2)->nullable();
             $table->string('transaction_id')->nullable();
+            $table->string('order_number')->unique();
             $table->string('currency')->nullable();
             $table->string('order_status')->nullable();
             $table->string('payment_status')->nullable();

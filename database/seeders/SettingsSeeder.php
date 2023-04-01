@@ -16,14 +16,14 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         Settings::create([
-            'name'=>'ACM',
-            'email'=>'acm@neuralwebx.com',
-            'phone'=>'+8801878005537',
-            'address'=>'Uttara, Dhaka-1230',
-            'logo'=>'nabil.png',
-            'favicon'=>'nabil.png',
-            'linkedin'=>'https://linkedin.com/in/imhayatunnabi',
-            'facebook'=>'https://facebook.com/imhayatunnabi',
+            'name' => 'Art Seller',
+            'email' => 'artseller@neuralwebx.com',
+            'phone' => '+8801878005537',
+            'address' => 'Uttara, Dhaka-1230',
+            'logo' => 'nabil.png',
+            'favicon' => 'nabil.png',
+            'linkedin' => 'https://linkedin.com/in/neuralwebx',
+            'facebook' => 'https://facebook.com/neuralwebx',
         ]);
     }
 }

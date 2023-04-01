@@ -65,6 +65,11 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_d'] = "ref004";
         // try {
         // DB::beginTransaction();
+        $orderNumber = 'order-' . date('y') . '-' . date('Ymhsis');
+        $orderExist = Order::where('order_number', 'like', $orderNumber)->get();
+        if ($orderExist->count() > 0) {
+            $orderNumber = 'order-' . date('y') . '-' . date('Ymhsis') . '-' . rand(1, 100);
+        }
         $order = Order::create([
             'name' => $post_data['cus_name'],
             'email' => $post_data['cus_email'],
@@ -77,6 +82,7 @@ class SslCommerzPaymentController extends Controller
             'user_id' => auth()->user()->id,
             'address' => $post_data['cus_add1'],
             'transaction_id' => $post_data['tran_id'],
+            'order_number' => $orderNumber,
             'currency' => $post_data['currency']
         ]);
         OrderDetail::create([
