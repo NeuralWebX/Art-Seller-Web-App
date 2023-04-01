@@ -9,9 +9,11 @@
                         <span class="font-weight-bold"> {{ settings()->name }}</span>
                     </a>
                 </div>
+                @permission('backend.index')
                 <li>
                     <a href="{{ route('backend.index') }}"><i class="ti-home"></i> Dashboard </a>
                 </li>
+                @endpermission
                 @permission('backend.shop.index')
                 <li>
                     <a href="{{ route('backend.shop.index') }}">
@@ -20,14 +22,14 @@
                     </a>
                 </li>
                 @endpermission
-                {{-- @permission('backend.shop.index') --}}
+                @permission('backend.order.management.index')
                 <li>
                     <a href="{{ route('backend.order.management.index') }}">
                         <i class="fa-solid fa-paintbrush"></i>
                         Orders
                     </a>
                 </li>
-                {{-- @endpermission --}}
+                @endpermission
                 @permission('backend.role-permission.index')
                 <li>
                     <a href="{{ route('backend.role-permission.index') }}"><i class="fa-solid fa-user-secret"></i></i>
