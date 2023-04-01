@@ -101,7 +101,6 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        echo "Transaction is Successful";
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
@@ -115,10 +114,8 @@ class SslCommerzPaymentController extends Controller
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
                     ->update(['order_status' => 'Processing']);
-                echo "<br >Transaction is successfully Completed";
             }
         } else if ($order_details->order_status == 'Processing' || $order_details->order_status == 'Complete') {
-            echo "Transaction is successfully Completed";
         } else {
             echo "Invalid Transaction";
         }
@@ -138,9 +135,7 @@ class SslCommerzPaymentController extends Controller
             $update_product = DB::table('orders')
                 ->where('transaction_id', $tran_id)
                 ->update(['order_status' => 'Failed']);
-            echo "Transaction is Falied";
         } else if ($order_details->status == 'Processing' || $order_details->order_status == 'Complete') {
-            echo "Transaction is already Successful";
         } else {
             echo "Transaction is Invalid";
         }
@@ -160,7 +155,6 @@ class SslCommerzPaymentController extends Controller
             $update_product = DB::table('orders')
                 ->where('transaction_id', $tran_id)
                 ->update(['order_status' => 'Canceled']);
-            echo "Transaction is Cancel";
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             echo "Transaction is already Successful";
         } else {
