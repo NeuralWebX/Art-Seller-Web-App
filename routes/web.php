@@ -27,7 +27,7 @@ Route::prefix('authenticate')->name('backend.auth.')->group(function () {
     Route::get('/login', [BackendController::class, 'login'])->name('login');
     Route::post('/login-submit', [BackendController::class, 'loginSubmit'])->name('login.submit');
     Route::get('/registration', [AuthController::class, 'regForm'])->name('regForm');
-    Route::get('/registration-submit', [AuthController::class, 'registration'])->name('regForm');
+    Route::post('/registration-submit', [AuthController::class, 'registration'])->name('registration');
 });
 Route::name('backend.')->middleware('auth')->group(function () {
     Route::get('/logout', [BackendController::class, 'logout'])->name('logout');

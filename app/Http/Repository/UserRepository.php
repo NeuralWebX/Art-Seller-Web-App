@@ -3,6 +3,7 @@
 namespace App\Http\Repository;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 
@@ -10,7 +11,7 @@ class UserRepository
 {
     public function index()
     {
-        $users = User::orderBy('updated_at','DESC')->get();
+        $users = User::orderBy('updated_at', 'DESC')->get();
         return $users;
     }
     public function find($id)
@@ -30,8 +31,8 @@ class UserRepository
             'email' => $request->email,
             'phone' => $request->phone,
             'role_id' => $request->role_id,
-            'username' => str_replace('', '_', $request->name),
-            'status' => $request->status,
+            'username' => Str::slug($request->name) . date('Ymdhsis'),
+            'status' => $request->status ? $request->status : null,
             'dob' => $request->dob,
             'address' => $request->address,
             'password' => bcrypt($request->password),

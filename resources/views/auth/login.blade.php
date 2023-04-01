@@ -215,9 +215,12 @@ background-position: center center;
                             <input type="password" required name="password" id="password" class="form-control"
                                 placeholder="Password" autocomplete="off">
                         </div>
-                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In
+                        <button type="submit" class="form-control btn btn-success rounded submit px-3">Sign In
                         </button>
                     </form>
+                    <a href="{{ route('backend.auth.regForm') }}"
+                        class="form-control btn btn-primary rounded submit px-3">Sign Up
+                    </a>
                 </div>
                 <div class="card mx-auto border-0">
                     <p>Username: super_admin</p>
