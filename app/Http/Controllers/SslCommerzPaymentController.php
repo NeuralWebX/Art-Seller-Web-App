@@ -64,54 +64,55 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_b'] = "ref002";
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
-        // try {
-        // DB::beginTransaction();
-        $orderNumber = 'order-' . date('y') . '-' . date('Ymhsis');
-        $orderExist = Order::where('order_number', 'like', $orderNumber)->get();
-        if ($orderExist->count() > 0) {
-            $orderNumber = 'order-' . date('y') . '-' . date('Ymhsis') . '-' . rand(1, 100);
+        try {
+            DB::beginTransaction();
+            $orderNumber = 'order-' . date('y') . '-' . date('Ymhsis');
+            $orderExist = Order::where('order_number', 'like', $orderNumber)->get();
+            if ($orderExist->count() > 0) {
+                $orderNumber = 'order-' . date('y') . '-' . date('Ymhsis') . '-' . rand(1, 100);
+            }
+            $order = Order::create([
+                'name' => $post_data['cus_name'],
+                'email' => $post_data['cus_email'],
+                'phone' => $post_data['cus_phone'],
+                'amount' => $post_data['total_amount'],
+                'order_status' => 'Pending',
+                'payment_status' => 'Pending',
+                'payment_method' => '',
+                'author_id' => $product->user_id,
+                'customer_id' => auth()->user()->id,
+                'address' => $post_data['cus_add1'],
+                'transaction_id' => $post_data['tran_id'],
+                'order_number' => $orderNumber,
+                'currency' => $post_data['currency']
+            ]);
+            OrderDetail::create([
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'quantity' => 1,
+                'unit_price' => $post_data['total_amount'],
+                'sub_total' => $post_data['total_amount'] * 1,
+            ]);
+            $transaction = Transaction::create([
+                'author_id' => $product->user_id,
+                'order_id' => $order->id,
+                'artist_payable' => $post_data['total_amount'] * 80 / 100,
+                'admin_payable' => $post_data['total_amount'] * 20 / 100,
+            ]);
+            $product->update([
+                'product_status' => 1,
+            ]);
+            DB::commit();
+            $sslc = new SslCommerzNotification();
+            $payment_options = $sslc->makePayment($post_data, 'hosted');
+            if (!is_array($payment_options)) {
+                print_r($payment_options);
+                $payment_options = array();
+            }
+        } catch (\Throwable $th) {
+            alert()->error('something went wrong');
+            return redirect()->route('backend.shop.index');
         }
-        $order = Order::create([
-            'name' => $post_data['cus_name'],
-            'email' => $post_data['cus_email'],
-            'phone' => $post_data['cus_phone'],
-            'amount' => $post_data['total_amount'],
-            'order_status' => 'Pending',
-            'payment_status' => 'Pending',
-            'payment_method' => '',
-            'author_id' => $product->user_id,
-            'customer_id' => auth()->user()->id,
-            'address' => $post_data['cus_add1'],
-            'transaction_id' => $post_data['tran_id'],
-            'order_number' => $orderNumber,
-            'currency' => $post_data['currency']
-        ]);
-        OrderDetail::create([
-            'order_id' => $order->id,
-            'product_id' => $product->id,
-            'quantity' => 1,
-            'unit_price' => $post_data['total_amount'],
-            'sub_total' => $post_data['total_amount'] * 1,
-        ]);
-        $transaction = Transaction::create([
-            'author_id' => $product->user_id,
-            'order_id' => $order->id,
-            'artist_payable' => $post_data['total_amount'] * 80 / 100,
-            'admin_payable' => $post_data['total_amount'] * 20 / 100,
-        ]);
-        $product->update([
-            'product_status' => 1,
-        ]);
-        // DB::commit();
-        $sslc = new SslCommerzNotification();
-        $payment_options = $sslc->makePayment($post_data, 'hosted');
-        if (!is_array($payment_options)) {
-            print_r($payment_options);
-            $payment_options = array();
-        }
-        // } catch (\Throwable $th) {
-        //     return redirect()->route('backend.shop.index');
-        // }
     }
 
     public function success(Request $request)
