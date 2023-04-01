@@ -17,7 +17,15 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->double('amount',15,2)->nullable();
+            $table->foreignId('author_id')
+                ->references('id')
+                ->on('users')
+                ->restrictOnDelete();
+            $table->foreignId('customer_id')
+                ->references('id')
+                ->on('users')
+                ->restrictOnDelete();
+            $table->double('amount', 15, 2)->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('currency')->nullable();
             $table->string('order_status')->nullable();

@@ -73,6 +73,8 @@ class SslCommerzPaymentController extends Controller
             'order_status' => 'Pending',
             'payment_status' => 'Pending',
             'payment_method' => '',
+            'author_id' => $product->user_id,
+            'user_id' => auth()->user()->id,
             'address' => $post_data['cus_add1'],
             'transaction_id' => $post_data['tran_id'],
             'currency' => $post_data['currency']

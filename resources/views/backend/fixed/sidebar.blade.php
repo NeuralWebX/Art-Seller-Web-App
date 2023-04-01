@@ -20,6 +20,14 @@
                     </a>
                 </li>
                 @endpermission
+                {{-- @permission('backend.shop.index') --}}
+                <li>
+                    <a href="{{ route('backend.order.management.index') }}">
+                        <i class="fa-solid fa-paintbrush"></i>
+                        Orders
+                    </a>
+                </li>
+                {{-- @endpermission --}}
                 @permission('backend.role-permission.index')
                 <li>
                     <a href="{{ route('backend.role-permission.index') }}"><i class="fa-solid fa-user-secret"></i></i>

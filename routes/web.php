@@ -85,4 +85,8 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel'])->name('cancel');
         Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn'])->name('ipn');
     });
+    Route::prefix('order-management')->name('order.management.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/by-author/{author_id}', [OrderController::class, 'byAuthor'])->name('byAuthor');
+    });
 });
