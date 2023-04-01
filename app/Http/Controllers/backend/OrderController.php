@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Models\User;
 use App\Models\Order;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Repository\OrderRepository;
