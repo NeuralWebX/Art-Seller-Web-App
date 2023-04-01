@@ -98,6 +98,7 @@ class SslCommerzPaymentController extends Controller
                 'order_id' => $order->id,
                 'artist_payable' => $post_data['total_amount'] * 80 / 100,
                 'admin_payable' => $post_data['total_amount'] * 20 / 100,
+                'admin_paid' => $post_data['total_amount'] * 20 / 100,
             ]);
             $product->update([
                 'product_status' => 1,

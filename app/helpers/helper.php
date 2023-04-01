@@ -3,6 +3,7 @@
 use App\Models\Role;
 use App\Models\Category;
 use App\Models\Settings;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 // to check if the route has any permission to the auth user
@@ -59,5 +60,23 @@ if (!function_exists('categories')) {
     {
         $categories = Category::all();
         return $categories;
+    }
+}
+if (!function_exists('availableWithDraw')) {
+    function availableWithDraw()
+    {
+        $transaction = Transaction::where('author_id', auth()->user()->id)
+            ->where('status', 0)
+            ->sum('artist_payable');
+        return $transaction;
+    }
+}
+if (!function_exists('totalWithDraw')) {
+    function totalWithDraw()
+    {
+        $transaction = Transaction::where('author_id', auth()->user()->id)
+            ->where('status', 1)
+            ->sum('artist_paid');
+        return $transaction;
     }
 }

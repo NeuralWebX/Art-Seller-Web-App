@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\SettingsController;
 use App\Http\Controllers\Frontend\AuthController;
+use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\SslCommerzPaymentController;
 
 /*
@@ -91,5 +92,13 @@ Route::name('backend.')->middleware('auth')->group(function () {
     Route::prefix('order-management')->name('order.management.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/by-author/{author_id}', [OrderController::class, 'byAuthor'])->name('byAuthor');
+    });
+    Route::prefix('transaction')->name('transaction.')->group(function () {
+        Route::get('/total-unpaid-transaction-for-artist', [TransactionController::class, 'totalUnPaidTransactionForAnArtist'])
+            ->name('totalUnPaidTransactionForAnArtist');
+        Route::get('/total-paid-transaction-for-artist', [TransactionController::class, 'paidTransactionForAnArtist'])
+            ->name('paidTransactionForAnArtist');
+        Route::get('/total-withdraw-transaction-for-artist', [TransactionController::class, 'artistWithDrawMoney'])
+            ->name('artistWithDrawMoney');
     });
 });

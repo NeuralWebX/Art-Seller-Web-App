@@ -22,8 +22,10 @@ return new class extends Migration
                 ->restrictOnDelete();
             $table->double('artist_payable', 15, 2)->nullable();
             $table->double('artist_paid', 15, 2)->nullable();
+            $table->string('artist_paid_account_number')->nullable();
             $table->double('admin_payable', 15, 2)->nullable();
             $table->double('artist_paid', 15, 2)->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
