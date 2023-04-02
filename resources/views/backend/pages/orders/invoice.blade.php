@@ -132,7 +132,7 @@
             <tfoot>
                 <tr>
                     <td colspan="3">Total Amount :</td>
-                    <td>194.30 Taka Only</td>
+                    <td>{{ $order->amount }}</td>
                 </tr>
             </tfoot>
         </table>
