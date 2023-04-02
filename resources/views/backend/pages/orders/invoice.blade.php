@@ -122,7 +122,9 @@
             <tbody>
                 <tr>
                     <td>{{ $order->orderDetails[0]->product->product_number }}</td>
-                    <td>{{ $order->orderDetails[0]->product->product_name }}</td>
+                    <td><a href="{{ route('backend.product.show',$order->orderDetails[0]->product->id) }}">{{
+                            $order->orderDetails[0]->product->product_name
+                            }}</a></td>
                     <td>1</td>
                     <td>{{ $order->orderDetails[0]->product->product_price }}</td>
                 </tr>
