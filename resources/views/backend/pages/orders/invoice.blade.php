@@ -116,7 +116,7 @@
             <tr class="top_rw">
                 <td colspan="2">
                     <h2 style="margin-bottom: 0px;"> Invoice/Bill of ArtSeller </h2>
-                    <span style=""> Number: {{$newOrder->id}} Date: {{$newOrder->created_at}} </span>
+                    <span style=""> Number: {{$order->id}} Date: {{$order->created_at}} </span>
                 </td>
             </tr>
             <tr class="top">
@@ -136,17 +136,16 @@
                     <table>
                         <tr>
                             <td colspan="2">
-                                <b> Shipping Address: {{$newOrder->user_address}} </b> <br>
-                                <b>Payment Status :</b> {{$newOrder->payment_status}} <br>
-                                <b>Payment Method :</b> {{$newOrder->payment_method}} <br>
-                                <b>Transaction ID :</b> {{$newOrder->tran_id}} <br>
+                                <b> Shipping Address: {{$order->address}} </b> <br>
+                                <b>Payment Status :</b> {{$order->payment_status}} <br>
+                                <b>Payment Method :</b> {{$order->payment_method}} <br>
+                                <b>Transaction ID :</b> {{$order->tran_id}} <br>
                             </td>
-                            <td> <b> Billing Address: {{$newOrder->user_address}} </b><br>
-                                <b>Reciever's Name :</b> {{$newOrder->first_name}} <span
-                                    style="color:#478fcc">{{$newOrder->last_name}}</span> <br>
+                            <td> <b> Billing Address: {{$order->address}} </b><br>
+                                <b>Reciever's Name :</b> {{$order->name}} <br>
 
-                                <b>Reciever's Phone :</b> {{$newOrder->user_phone}}<br>
-                                <b>Reciever's Email :</b> {{$newOrder->user_email}} <br>
+                                <b>Reciever's Phone :</b> {{$order->phone}}<br>
+                                <b>Reciever's Email :</b> {{$order->email}} <br>
 
                             </td>
                         </tr>
@@ -169,7 +168,7 @@
                             SUB TOTAL
                         </td>
                     </tr>
-                    @foreach ($newOrder->details as $data)
+                    {{-- @foreach ($order->details as $data)
                     <tr class="item">
                         <td style="width:25%;">
                             {{$data->item->product_name}}
@@ -184,11 +183,11 @@
                             {{$data->subtotal}}
                         </td>
                     </tr>
-                    @endforeach
+                    @endforeach --}}
             </td>
         </table>
         <tr class="total">
-            <td colspan="3" align="right"> Total Amount : <b> {{$newOrder->total}} Taka Only </b> </td>
+            <td colspan="3" align="right"> Total Amount : <b> {{$order->amount}} Taka Only </b> </td>
         </tr>
         <tr>
             <td colspan="3">

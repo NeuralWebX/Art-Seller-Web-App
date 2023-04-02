@@ -111,6 +111,7 @@ class SslCommerzPaymentController extends Controller
                 $payment_options = array();
             }
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             alert()->error('something went wrong');
             return redirect()->route('backend.shop.index');
         }

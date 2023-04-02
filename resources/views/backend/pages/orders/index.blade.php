@@ -58,10 +58,10 @@
                 <td>{{ $item->payment_status }}</td>
                 <td>{{ $item->payment_method }}</td>
                 <td>
-                    <a href="http://" class="btn btn-success">
+                    <a href="{{ route('backend.order.management.preview',$item->id) }}" class="btn btn-success">
                         <i class="fa-solid fa-eye"></i>
                     </a>
-                    <a href="http://" class="btn btn-primary">
+                    <a href="{{ route('backend.order.management.invoice',$item->id) }}" class="btn btn-primary">
                         <i class="fa-solid fa-print"></i>
                     </a>
                 </td>

@@ -4,8 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Models\User;
 use App\Models\Order;
-use Barryvdh\DomPDF\PDF;
-use Illuminate\Http\Request;
+use Mpdf\Mpdf;
 use App\Http\Controllers\Controller;
 use App\Http\Repository\OrderRepository;
 
@@ -39,10 +38,20 @@ class OrderController extends Controller
             ->get();
         return response()->json($orders);
     }
+    public function preview($id)
+    {
+        $order = Order::with('orderDetails', 'orderDetails.product')->find($id);
+        return view('backend.pages.orders.invoice',compact('order'));
+    }
     public function invoice($id)
     {
         $order = Order::with('orderDetails', 'orderDetails.product')->find($id);
-        $pdf = PDF::loadView('orders.pdf', $order);
-        return $pdf->download('order.pdf');
+        // dd($order);
+        // $pdf = PDF::loadView('orders.pdf', $order);
+        // return $pdf->download('order.pdf');
+        // $view = view('backend.pages.orders.invoice', ['order' => $order])->render();
+        // $mpdf = new Mpdf(['tempDir' => storage_path('temp')]);
+        // $mpdf->WriteHTML($view);
+        // $mpdf->Output('invoice.pdf', 'D');
     }
 }
