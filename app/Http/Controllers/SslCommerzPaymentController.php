@@ -102,9 +102,13 @@ class SslCommerzPaymentController extends Controller
                 'admin_payable' => $post_data['total_amount'] * 20 / 100,
                 'admin_paid' => $post_data['total_amount'] * 20 / 100,
             ]);
-            // $product->update([
-            //     'product_status' => 1,
-            // ]);
+            foreach ($carts as $key => $value) {
+                $product = Product::find($value['id']);
+                $product->update([
+                    'product_status' => 1,
+                ]);
+            }
+
             DB::commit();
             session()->forget('cart');
             $sslc = new SslCommerzNotification();
