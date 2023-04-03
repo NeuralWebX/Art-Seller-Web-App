@@ -62,7 +62,8 @@ class AddtoCartController extends Controller
         $cart = session()->get('cart');
         unset($cart[$id]);
         session(['cart' => $cart]);
-        return response()->json(['status' => 'success']);
+        // return response()->json(['status' => 'success']);
+        return back();
     }
     public function increase($id)
     {

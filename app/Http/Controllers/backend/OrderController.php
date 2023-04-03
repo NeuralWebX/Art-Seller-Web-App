@@ -32,8 +32,9 @@ class OrderController extends Controller
     }
     public function byAuthor($id)
     {
-        $orders = Order::with('orderDetails')
-            ->where('author_id', $id)
+        $orders = Order::with(['orderDetails' => function ($query) use ($id) {
+            $query->where('author_id', $id);
+        }])
             ->orderBy('created_at', 'DESC')
             ->get();
         return response()->json($orders);
@@ -41,7 +42,7 @@ class OrderController extends Controller
     public function preview($id)
     {
         $order = Order::with('orderDetails', 'orderDetails.product')->find($id);
-        return view('backend.pages.orders.invoice',compact('order'));
+        return view('backend.pages.orders.invoice', compact('order'));
     }
     public function invoice($id)
     {
