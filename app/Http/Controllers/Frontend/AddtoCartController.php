@@ -12,7 +12,7 @@ class AddtoCartController extends Controller
     {
         $product = Product::find($id);
         if (!$product) {
-            alert()->error('sorry','product not available');
+            alert()->error('sorry', 'product not available');
             return redirect()->back();
         }
         $cart = session()->get('cart');
@@ -51,5 +51,15 @@ class AddtoCartController extends Controller
     {
         $cart = session()->get('cart');
         return sendJson('Add to cart data', $cart, 200);
+    }
+    public function remove($id)
+    {
+        $cart = session()->get('cart');
+        unset($cart[$id]);
+        session(['cart' => $cart]);
+        return response()->json(['status' => 'success']);
+    }
+    public function increase()
+    {
     }
 }

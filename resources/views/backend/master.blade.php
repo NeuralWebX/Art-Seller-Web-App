@@ -200,12 +200,12 @@
                     $.each(data.data, function(index, item) {
                         console.log(item.name);
                         console.log(item.id);
-                        $('#cartData').append(`<li>
-                            <a href="#">
+                        $('#cartData').append(`<li onclick="location.href='{{ route('backend.cart.remove') }}?${item.id}'">
+                            <a href="">
                                 <img class="pull-left m-r-10 avatar-img" src="${item.image}" alt="" />
                                 <div class="notification-content">
                                     <small class="notification-timestamp pull-right">
-                                    <a href="{{ route('backend.cart.remove') }}?${item.id}" class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></a><a href="{{ route('backend.cart.increase') }}?${item.id}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a></small>
+                                    </small>
                                     <div class="notification-heading">${item.name} </div>
                                     <div class="notification-text">${item.price} BDT.</div>
                                 </div>
