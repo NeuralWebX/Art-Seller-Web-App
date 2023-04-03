@@ -24,27 +24,30 @@ class AddtoCartController extends Controller
                     'name' => $product->product_name,
                     'quantity' => 1,
                     'price' => $product->product_price,
+                    'sub_total' => $product->product_price,
                     'image' => $product->product_image,
                 ]
             ];
             session()->put('cart', $cart);
-            alert()->error('sorry', 'product added to cart');
+            alert()->success('Yay !!', 'product added to cart');
             return redirect()->back();
         }
         // If cart is not empty, check if the product already exists
         if (isset($cart[$product->id])) {
-            $cart[$product->id]['quantity']++;
+            $cart[$product->id]['quantity'] = $cart[$product->id]['quantity']++;
+            $cart[$product->id]['sub_total'] = $cart[$product->id]['quantity'] * $cart[$product->id]['price'];
         } else {
             $cart[$product->id] = [
                 'id' => $product->id,
                 'name' => $product->product_name,
                 'quantity' => 1,
                 'price' => $product->product_price,
+                'sub_total' => $product->product_price,
                 'image' => $product->product_image,
             ];
         }
         session()->put('cart', $cart);
-        alert()->error('sorry', 'product added to cart');
+        alert()->success('Yay !!', 'product added to cart');
         return redirect()->back();
     }
     public function list()
@@ -52,14 +55,23 @@ class AddtoCartController extends Controller
         $cart = session()->get('cart');
         return sendJson('Add to cart data', $cart, 200);
     }
-    public function remove($id)
+    public function remove()
     {
+        $id = request()->input();
+        $id = key($id);
         $cart = session()->get('cart');
         unset($cart[$id]);
         session(['cart' => $cart]);
         return response()->json(['status' => 'success']);
     }
-    public function increase()
+    public function increase($id)
     {
+        $cart = session()->get('cart');
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session(['cart' => $cart]);
+            return response()->json(['status' => 'success']);
+        }
+        return response()->json(['status' => 'error', 'message' => 'Product not found in cart.']);
     }
 }

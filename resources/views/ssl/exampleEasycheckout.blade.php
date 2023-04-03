@@ -47,13 +47,15 @@
                     <span class="badge badge-secondary badge-pill">1</span>
                 </h4>
                 <ul class="list-group mb-3">
+                    @foreach ($carts as $item)
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                            <h6 class="my-0">{{ $product->product_name }}</h6>
-                            <small class="text-muted">{{ $product->product_details }}</small>
+                            <h6 class="my-0">{{ $item['name'] }}</h6>
+                            <small class="text-muted">{{ $item['price'] }}</small>
                         </div>
-                        <span class="text-muted">{{ number_format($product->product_price,2) }} BDT.</span>
+                        <span class="text-muted">{{ number_format($item['sub_total'],2) }} BDT.</span>
                     </li>
+                    @endforeach
                     {{-- <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0">Second product</h6>
@@ -70,14 +72,14 @@
                     </li> --}}
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (BDT)</span>
-                        <strong>{{ $product->product_price }} TK</strong>
+                        <strong>{{ totalPayAble() }} TK</strong>
                     </li>
                 </ul>
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Billing address</h4>
-                <form action="{{ route('backend.onlinePay.payNow',$product->id) }}" method="POST"
-                    class="needs-validation" enctype="multipart/form-data">
+                <form action="{{ route('backend.onlinePay.payNow') }}" method="POST" class="needs-validation"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-12 mb-3">
@@ -167,7 +169,7 @@
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="same-address">
-                        <input type="hidden" value="{{ $product->product_price }}" name="amount" id="total_amount"
+                        <input type="hidden" value="{{ totalPayAble() }}" name="amount" id="total_amount"
                             required />
                         <label class="custom-control-label" for="same-address">Shipping address is the same as my
                             billing

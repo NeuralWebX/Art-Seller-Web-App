@@ -120,14 +120,16 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($order->orderDetails as $item)
                 <tr>
-                    <td>{{ $order->orderDetails[0]->product->product_number }}</td>
-                    <td><a href="{{ route('backend.product.show',$order->orderDetails[0]->product->id) }}">{{
-                            $order->orderDetails[0]->product->product_name
+                    <td>{{ $item->product->product_number }}</td>
+                    <td><a href="{{ route('backend.product.show',$item->product->id) }}">{{
+                            $item->product->product_name
                             }}</a></td>
                     <td>1</td>
-                    <td>{{ $order->orderDetails[0]->product->product_price }}</td>
+                    <td>{{ $item->product->product_price }}</td>
                 </tr>
+                @endforeach
             </tbody>
             <tfoot>
                 <tr>

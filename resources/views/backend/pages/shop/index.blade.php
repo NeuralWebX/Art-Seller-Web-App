@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <a href="{{ route('backend.onlinePay.exampleEasyCheckout',$item->id) }}"
+                        <a href="{{ route('backend.onlinePay.exampleEasyCheckout') }}"
                             class="btn btn-primary">Purchase Now</a>
                     </div>
                 </div>

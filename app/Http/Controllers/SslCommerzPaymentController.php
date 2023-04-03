@@ -19,10 +19,10 @@ class SslCommerzPaymentController extends Controller
     {
         $this->products = $products;
     }
-    public function exampleEasyCheckout($id)
+    public function exampleEasyCheckout()
     {
-        $product = $this->products->show($id);
-        return view('ssl.exampleEasycheckout', compact('product'));
+        $carts = session()->get('cart');
+        return view('ssl.exampleEasycheckout', compact('carts'));
     }
 
     public function exampleHostedCheckout($id)
@@ -30,11 +30,11 @@ class SslCommerzPaymentController extends Controller
         return view('ssl.exampleHosted');
     }
 
-    public function index(OrderRequest $request, $id)
+    public function index(OrderRequest $request)
     {
-        $product = Product::find($id);
+        $carts = session()->get('cart');
         $post_data = array();
-        $post_data['total_amount'] = $product->product_price;
+        $post_data['total_amount'] = totalPayAble();
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid();
         $post_data['cus_name'] = $request->name;
@@ -79,31 +79,34 @@ class SslCommerzPaymentController extends Controller
                 'order_status' => 'Pending',
                 'payment_status' => 'Pending',
                 'payment_method' => '',
-                'author_id' => $product->user_id,
+                'author_id' => 1,
                 'customer_id' => auth()->user()->id,
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
                 'order_number' => $orderNumber,
                 'currency' => $post_data['currency']
             ]);
-            OrderDetail::create([
-                'order_id' => $order->id,
-                'product_id' => $product->id,
-                'quantity' => 1,
-                'unit_price' => $post_data['total_amount'],
-                'sub_total' => $post_data['total_amount'] * 1,
-            ]);
+            foreach ($carts as $key => $value) {
+                OrderDetail::create([
+                    'order_id' => $order->id,
+                    'product_id' => $value['id'],
+                    'quantity' => 1,
+                    'unit_price' => $value['price'],
+                    'sub_total' => $value['sub_total'],
+                ]);
+            }
             $transaction = Transaction::create([
-                'author_id' => $product->user_id,
+                'author_id' => 1,
                 'order_id' => $order->id,
                 'artist_payable' => $post_data['total_amount'] * 80 / 100,
                 'admin_payable' => $post_data['total_amount'] * 20 / 100,
                 'admin_paid' => $post_data['total_amount'] * 20 / 100,
             ]);
-            $product->update([
-                'product_status' => 1,
-            ]);
+            // $product->update([
+            //     'product_status' => 1,
+            // ]);
             DB::commit();
+            session()->forget('cart');
             $sslc = new SslCommerzNotification();
             $payment_options = $sslc->makePayment($post_data, 'hosted');
             if (!is_array($payment_options)) {

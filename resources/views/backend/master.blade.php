@@ -207,7 +207,7 @@
                                     <small class="notification-timestamp pull-right">
                                     </small>
                                     <div class="notification-heading">${item.name} </div>
-                                    <div class="notification-text">${item.price} BDT.</div>
+                                    <div class="text-primary">${item.sub_total} BDT. <span class="text-danger mr-2">/${item.quantity} Qty.</span></div>
                                 </div>
                             </a>
                         </li>`);

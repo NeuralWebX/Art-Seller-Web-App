@@ -83,9 +83,9 @@ Route::name('backend.')->middleware('auth')->group(function () {
     });
     // SSLCOMMERZ Start
     Route::prefix('online-pay')->name('onlinePay.')->group(function () {
-        Route::get('/easy-checkout-ssl/{product}', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('exampleEasyCheckout');
+        Route::get('/easy-checkout-ssl', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('exampleEasyCheckout');
         Route::get('/example2/{product}', [SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('exampleHostedCheckout');
-        Route::post('/pay/{product}', [SslCommerzPaymentController::class, 'index'])->name('payNow');
+        Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('payNow');
         Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('payViaAjax');
         Route::get('/success', [SslCommerzPaymentController::class, 'success'])->name('success');
         Route::post('/fail', [SslCommerzPaymentController::class, 'fail'])->name('fail');

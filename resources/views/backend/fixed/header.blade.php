@@ -12,7 +12,7 @@
                 <div class="float-right">
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            <i class="fa-solid fa-cart-shopping"></i>
                             <div class="drop-down dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-content-heading">
                                     <span class="text-left">Added to cart</span>
