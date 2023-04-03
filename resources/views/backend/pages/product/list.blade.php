@@ -41,9 +41,11 @@
                     <a href="{{ route('backend.product.edit',$item->id) }}" class="btn btn-primary"><i
                             class="fa fa-pencil-square" aria-hidden="true"></i>
                     </a>
+                    @permission('backend.product.destroy')
                     <a href="{{ route('backend.product.destroy',$item->id) }}" class="btn btn-danger">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
+                    @endpermission
                 </td>
             </tr>
             @endforeach
