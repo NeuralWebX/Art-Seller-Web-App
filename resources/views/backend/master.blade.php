@@ -192,31 +192,32 @@
     </script>
     <script>
         $(document).ready(function () {
-        $.ajax({
-            type: 'GET',
-            url: "{{ route('backend.cart.list') }}",
-            success: function (data) {
-                console.log(data);
-                $.each(data.data, function(index, item) {
-                    console.log(item.name);
-                    $('#cartData').append(`<li>
-                        <a href="#">
-                            <img class="pull-left m-r-10 avatar-img" src="${item.image}" alt="" />
-                            <div class="notification-content">
-                                <small class="notification-timestamp pull-right">02:34
-                                    PM</small>
-                                <div class="notification-heading">${item.name} </div>
-                                <div class="notification-text">${item.price} BDT.</div>
-                            </div>
-                        </a>
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('backend.cart.list') }}",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data.data, function(index, item) {
+                        console.log(item.name);
+                        console.log(item.id);
+                        $('#cartData').append(`<li>
+                            <a href="#">
+                                <img class="pull-left m-r-10 avatar-img" src="${item.image}" alt="" />
+                                <div class="notification-content">
+                                    <small class="notification-timestamp pull-right">
+                                    <a href="{{ route('backend.cart.remove') }}?${item.id}" class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></a><a href="{{ route('backend.cart.increase') }}?${item.id}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a></small>
+                                    <div class="notification-heading">${item.name} </div>
+                                    <div class="notification-text">${item.price} BDT.</div>
+                                </div>
+                            </a>
+                        </li>`);
+                    });
+                    $('#cartData').append(`<li class="text-center">
+                        <a href="#" class="more-link">See All</a>
                     </li>`);
-                });
-                $('#cartData').append(`<li class="text-center">
-                    <a href="#" class="more-link">See All</a>
-                </li>`);
-            }
+                }
+            });
         });
-    });
     </script>
 </body>
 
