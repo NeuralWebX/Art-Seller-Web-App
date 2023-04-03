@@ -11,13 +11,13 @@
                 </div>
                 @permission('backend.index')
                 <li>
-                    <a href="{{ route('backend.index') }}"><i class="ti-home"></i> Dashboard </a>
+                    <a href="{{ route('backend.index') }}"><i class="fa-solid fa-house"></i> Dashboard </a>
                 </li>
                 @endpermission
                 @permission('backend.shop.index')
                 <li>
                     <a href="{{ route('backend.shop.index') }}">
-                        <i class="fa-brands fa-envira"></i>
+                        <i class="fa-solid fa-store"></i>
                         Shop
                     </a>
                 </li>
@@ -25,7 +25,7 @@
                 @permission('backend.order.management.index')
                 <li>
                     <a href="{{ route('backend.order.management.index') }}">
-                        <i class="fa-solid fa-paintbrush"></i>
+                        <i class="fa-solid fa-bag-shopping"></i>
                         Orders
                     </a>
                 </li>
@@ -54,7 +54,7 @@
                 @permission('backend.product.index')
                 <li>
                     <a href="{{ route('backend.product.index') }}">
-                        <i class="fa-solid fa-carrot"></i>
+                        <i class="fa-solid fa-qrcode"></i>
                         Product
                     </a>
                 </li>

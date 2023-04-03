@@ -32,8 +32,10 @@ Route::prefix('authenticate')->name('backend.auth.')->group(function () {
     Route::post('/registration-submit', [AuthController::class, 'registration'])->name('registration');
 });
 Route::name('backend.')->middleware('auth')->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/index', [BackendController::class, 'index'])->name('index');
+    });
     Route::get('/logout', [BackendController::class, 'logout'])->name('logout');
-    Route::get('/', [BackendController::class, 'index'])->name('index');
     Route::prefix('settings')->name('settings.')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::put('/update', [SettingsController::class, 'update'])->name('update');
