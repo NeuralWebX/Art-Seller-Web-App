@@ -79,9 +79,10 @@ class ACMController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name,' . $id
+            'name' => 'required'
         ]);
-        $role = Role::where('slug',$id)->first();
+        $role = Role::find($id);
+        // dd($role);
         if(!$role){
             Alert::success('Role Update Failed');
             return redirect()->back();
