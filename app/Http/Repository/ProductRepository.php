@@ -10,7 +10,9 @@ class ProductRepository
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'DESC')
+            ->orderBy('product_status', 'ASC')
+            ->get();
         return $products;
     }
     /**

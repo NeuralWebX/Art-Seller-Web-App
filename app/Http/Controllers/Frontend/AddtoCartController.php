@@ -34,8 +34,8 @@ class AddtoCartController extends Controller
         }
         // If cart is not empty, check if the product already exists
         if (isset($cart[$product->id])) {
-            $cart[$product->id]['quantity'] = $cart[$product->id]['quantity']++;
-            $cart[$product->id]['sub_total'] = $cart[$product->id]['quantity'] * $cart[$product->id]['price'];
+            alert()->success('Oppps', 'Only one at a time');
+            return redirect()->back();
         } else {
             $cart[$product->id] = [
                 'id' => $product->id,
@@ -62,7 +62,7 @@ class AddtoCartController extends Controller
         $cart = session()->get('cart');
         unset($cart[$id]);
         session(['cart' => $cart]);
-        // return response()->json(['status' => 'success']);
+        alert()->error('Oopps !!', 'Product removed from cart');
         return back();
     }
     public function increase($id)
