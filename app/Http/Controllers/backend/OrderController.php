@@ -23,8 +23,9 @@ class OrderController extends Controller
         if (auth()->user()->role_id == 1) {
             $orders = Order::with('orderDetails')->orderBy('created_at', 'DESC')->get();
         } else {
-            $orders = Order::with('orderDetails')
-                ->where('author_id', auth()->user()->id)
+            $orders = Order::with(['orderDetails' => function ($query) {
+                $query->where('author_id', auth()->user()->id);
+            }])
                 ->orderBy('created_at', 'DESC')
                 ->get();
         }
