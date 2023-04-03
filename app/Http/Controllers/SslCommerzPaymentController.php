@@ -79,7 +79,6 @@ class SslCommerzPaymentController extends Controller
                 'order_status' => 'Pending',
                 'payment_status' => 'Pending',
                 'payment_method' => '',
-                'author_id' => 1,
                 'customer_id' => auth()->user()->id,
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
@@ -87,10 +86,12 @@ class SslCommerzPaymentController extends Controller
                 'currency' => $post_data['currency']
             ]);
             foreach ($carts as $key => $value) {
+                $product = Product::find($value['id']);
                 OrderDetail::create([
                     'order_id' => $order->id,
                     'product_id' => $value['id'],
                     'quantity' => 1,
+                    'author_id'=>Product::find($value['id'])->user_id,
                     'unit_price' => $value['price'],
                     'sub_total' => $value['sub_total'],
                 ]);

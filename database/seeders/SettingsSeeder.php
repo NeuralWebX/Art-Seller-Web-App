@@ -20,7 +20,7 @@ class SettingsSeeder extends Seeder
             'email' => 'artseller@neuralwebx.com',
             'phone' => '+8801878005537',
             'address' => 'Uttara, Dhaka-1230',
-            'logo' => 'nabil.png',
+            'logo' => 'image.png',
             'favicon' => 'nabil.png',
             'linkedin' => 'https://linkedin.com/in/neuralwebx',
             'facebook' => 'https://facebook.com/neuralwebx',

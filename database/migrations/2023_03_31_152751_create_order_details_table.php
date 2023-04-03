@@ -19,6 +19,10 @@ return new class extends Migration
             $table->foreignId('product_id')->references('id')
                 ->on('products')
                 ->restrictOnDelete();
+            $table->foreignId('author_id')
+                ->references('id')
+                ->on('users')
+                ->restrictOnDelete();
             $table->double('quantity', 15, 2)->nullable();
             $table->double('unit_price', 15, 2)->nullable();
             $table->double('sub_total', 15, 2)->nullable();
