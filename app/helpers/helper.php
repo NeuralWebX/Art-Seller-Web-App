@@ -80,3 +80,13 @@ if (!function_exists('totalWithDraw')) {
         return $transaction;
     }
 }
+if (!function_exists('sendJson')) {
+    function sendJson($message, $data, $status)
+    {
+        return response()->json([
+            "message" => $message,
+            "data" => $data,
+            "status" => $status,
+        ]);
+    }
+}

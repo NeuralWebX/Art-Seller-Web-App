@@ -12,14 +12,14 @@
                 <div class="float-right">
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
-                            <i class="ti-bell"></i>
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
                             <div class="drop-down dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-content-heading">
-                                    <span class="text-left">Recent Notifications</span>
+                                    <span class="text-left">Added to cart</span>
                                 </div>
                                 <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
+                                    <ul id="cartData">
+                                        {{-- <li>
                                             <a href="#">
                                                 <img class="pull-left m-r-10 avatar-img"
                                                     src="assets/images/avatar/3.jpg" alt="" />
@@ -30,48 +30,10 @@
                                                     <div class="notification-text">5 members joined today </div>
                                                 </div>
                                             </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img class="pull-left m-r-10 avatar-img"
-                                                    src="assets/images/avatar/3.jpg" alt="" />
-                                                <div class="notification-content">
-                                                    <small class="notification-timestamp pull-right">02:34
-                                                        PM</small>
-                                                    <div class="notification-heading">Mariam</div>
-                                                    <div class="notification-text">likes a photo of you</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img class="pull-left m-r-10 avatar-img"
-                                                    src="assets/images/avatar/3.jpg" alt="" />
-                                                <div class="notification-content">
-                                                    <small class="notification-timestamp pull-right">02:34
-                                                        PM</small>
-                                                    <div class="notification-heading">Tasnim</div>
-                                                    <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                        ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img class="pull-left m-r-10 avatar-img"
-                                                    src="assets/images/avatar/3.jpg" alt="" />
-                                                <div class="notification-content">
-                                                    <small class="notification-timestamp pull-right">02:34
-                                                        PM</small>
-                                                    <div class="notification-heading">Mr. John</div>
-                                                    <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                        ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="text-center">
+                                        </li> --}}
+                                        {{-- <li class="text-center">
                                             <a href="#" class="more-link">See All</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>

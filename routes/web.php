@@ -5,13 +5,14 @@ use App\Http\Controllers\backend\ACMController;
 use App\Http\Controllers\backend\ShopController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\OrderController;
+use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\backend\BackendController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\SettingsController;
-use App\Http\Controllers\Frontend\AuthController;
-use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\Frontend\AddtoCartController;
+use App\Http\Controllers\Frontend\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,5 +103,9 @@ Route::name('backend.')->middleware('auth')->group(function () {
             ->name('paidTransactionForAnArtist');
         Route::get('/total-withdraw-transaction-for-artist', [TransactionController::class, 'artistWithDrawMoney'])
             ->name('artistWithDrawMoney');
+    });
+    Route::prefix('cart')->name('cart.')->group(function () {
+        Route::get('/add/{product_id}', [AddtoCartController::class, 'add'])->name('add');
+        Route::get('/list', [AddtoCartController::class, 'list'])->name('list');
     });
 });

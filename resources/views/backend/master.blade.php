@@ -171,7 +171,7 @@
                 console.log(editor);
             })
             .catch(error => {
-                console.error(error);
+                console.log(error);
             });
         ClassicEditor
             .create(document.querySelector('#termsAndCondition'))
@@ -179,7 +179,7 @@
                 console.log(editor);
             })
             .catch(error => {
-                console.error(error);
+                console.log(error);
             });
         ClassicEditor
             .create(document.querySelector('#privacyAndPolicy'))
@@ -187,10 +187,37 @@
                 console.log(editor);
             })
             .catch(error => {
-                console.error(error);
+                console.log(error);
             });
     </script>
-
+    <script>
+        $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('backend.cart.list') }}",
+            success: function (data) {
+                console.log(data);
+                $.each(data.data, function(index, item) {
+                    console.log(item.name);
+                    $('#cartData').append(`<li>
+                        <a href="#">
+                            <img class="pull-left m-r-10 avatar-img" src="${item.image}" alt="" />
+                            <div class="notification-content">
+                                <small class="notification-timestamp pull-right">02:34
+                                    PM</small>
+                                <div class="notification-heading">${item.name} </div>
+                                <div class="notification-text">${item.price} BDT.</div>
+                            </div>
+                        </a>
+                    </li>`);
+                });
+                $('#cartData').append(`<li class="text-center">
+                    <a href="#" class="more-link">See All</a>
+                </li>`);
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

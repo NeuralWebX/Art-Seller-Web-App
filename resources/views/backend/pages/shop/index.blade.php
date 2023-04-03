@@ -16,8 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <a href="{{ route('backend.onlinePay.exampleEasyCheckout',$item->id) }}"
-                            class="btn btn-primary">Book Now</a>
+                        <a href="{{ route('backend.cart.add',$item->id) }}" class="btn btn-primary">Cart</a>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
@@ -30,4 +29,5 @@
         @endforeach
     </div>
 </div>
+
 @endsection
