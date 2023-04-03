@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\Role;
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Repository\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('updated_at', 'DESC')->get();
+        $checkAdmin = Role::where('name', 'like', 'Super Admin')->first()->id;
+        $checkAuthor = Role::where('name', 'like', 'Author')->first()->id;
+        if ($checkAdmin == auth()->user()->id) {
+            $products = Product::orderBy('updated_at', 'DESC')->get();
+        } else {
+            $products = Product::orderBy('updated_at', 'DESC')
+                ->where('user_id', auth()->user()->id)
+                ->get();
+        }
         return view('backend.pages.product.list', compact('products'));
     }
 
