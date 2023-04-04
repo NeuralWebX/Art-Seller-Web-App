@@ -47,7 +47,16 @@
                         <a href="{{ route('backend.product.edit',$product->id) }}" class="btn btn-primary">Edit</a>
                         @endpermission
                         @permission('backend.product.destroy')
-                        <a href="{{ route('backend.product.destroy',$product->id) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('backend.product.destroy',$product->id) }}"
+                            class="btn btn-danger ml-3">Delete</a>
+                        @endpermission
+                        @permission('backend.cart.add')
+                        <a href="{{ route('backend.cart.add',$product->id) }}" class="btn btn-primary ml-3">Add to
+                            cart
+                            <span class="ml-3">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </span>
+                        </a>
                         @endpermission
                     </div>
                     <small class="text-primary">SKU: XXXX | Category: {{ $product->category->category_name }} |
@@ -74,9 +83,17 @@
             <div class="card text-white">
                 <img class="card-img-top" src="{{ $item->product_image }}" alt="Title">
                 <div class="card-body">
-                    <h4 class="card-title">{{ $item->product_name }}</h4>
+                    <h4 class="card-title">{{ substr($item->product_name,0,20) }}{{ strlen($item->product_name) > 20 ?
+                        '...' : '' }}</h4>
                     <p class="card-text">{{ number_format($item->product_price,2) }} BDT.</p>
                 </div>
+                @permission('backend.cart.add')
+                <a href="{{ route('backend.cart.add',$product->id) }}" class="btn btn-primary ml-3 mt-3">Add to cart
+                    <span class="ml-3">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </span>
+                </a>
+                @endpermission
             </div>
         </div>
         @endforeach
