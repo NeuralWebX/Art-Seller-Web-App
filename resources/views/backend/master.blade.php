@@ -222,6 +222,18 @@
             });
         });
     </script>
+    <script>
+        function goFullscreen() {
+            const element = document.documentElement;
+            if (element.requestFullscreen) {
+            element.requestFullscreen();
+            } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+            }
+        }
+    </script>
 </body>
 
 </html>

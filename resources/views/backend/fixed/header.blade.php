@@ -10,6 +10,11 @@
                     </div>
                 </div>
                 <div class="float-right">
+                    <div class="dropdown dib" id="goFullscreen">
+                        <div class="header-icon" onclick="goFullscreen()">
+                            <i class="fa-solid fa-expand"></i>
+                        </div>
+                    </div>
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
                             <i class="fa-solid fa-cart-shopping"></i>
