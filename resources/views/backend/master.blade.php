@@ -212,6 +212,9 @@
                             </a>
                         </li>`);
                     });
+                    $('#cartData').append(`<li class="bg-danger text-center " onclick="location.href='{{ route('backend.cart.clearcart') }}'">
+                        <a href="#" class="font-bold text-white">Clear Cart</a>
+                    </li>`);
                     $('#cartData').append(`<li class="text-center">
                         <a href="#" class="more-link">See All</a>
                     </li>`);

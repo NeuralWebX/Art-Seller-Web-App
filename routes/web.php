@@ -109,6 +109,7 @@ Route::name('backend.')->middleware('auth')->group(function () {
     Route::prefix('cart')->name('cart.')->group(function () {
         Route::get('/add/{product_id}', [AddtoCartController::class, 'add'])->name('add');
         Route::get('/remove', [AddtoCartController::class, 'remove'])->name('remove');
+        Route::get('/clear-cart', [AddtoCartController::class, 'clearcart'])->name('clearcart');
         Route::get('/increase', [AddtoCartController::class, 'increase'])->name('increase');
         Route::get('/list', [AddtoCartController::class, 'list'])->name('list');
     });

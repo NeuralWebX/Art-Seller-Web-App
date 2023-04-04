@@ -75,4 +75,10 @@ class AddtoCartController extends Controller
         }
         return response()->json(['status' => 'error', 'message' => 'Product not found in cart.']);
     }
+    public function clearcart()
+    {
+        session()->forget('cart');
+        alert()->info('Oops !', 'Shopping cart has been cleared');
+        return redirect()->back();
+    }
 }
