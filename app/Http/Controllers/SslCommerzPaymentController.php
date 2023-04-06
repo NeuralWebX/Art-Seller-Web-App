@@ -129,6 +129,7 @@ class SslCommerzPaymentController extends Controller
     {
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
+        $card_type = $request->input('card_type');
         $currency = $request->input('currency');
         $sslc = new SslCommerzNotification();
         $order_details = DB::table('orders')
@@ -139,7 +140,11 @@ class SslCommerzPaymentController extends Controller
             if ($validation) {
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
-                    ->update(['order_status' => 'Processing']);
+                    ->update([
+                        'order_status' => 'Processing',
+                        'payment_method' => $card_type,
+                        'payment_status' => 'Paid',
+                    ]);
             }
         } else if ($order_details->order_status == 'Processing' || $order_details->order_status == 'Complete') {
         } else {
