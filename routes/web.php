@@ -89,7 +89,7 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::get('/example2/{product}', [SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('exampleHostedCheckout');
         Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('payNow');
         Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('payViaAjax');
-        Route::get('/success', [SslCommerzPaymentController::class, 'success'])->name('success');
+        Route::post('/success', [SslCommerzPaymentController::class, 'success'])->name('success');
         Route::post('/fail', [SslCommerzPaymentController::class, 'fail'])->name('fail');
         Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel'])->name('cancel');
         Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn'])->name('ipn');
