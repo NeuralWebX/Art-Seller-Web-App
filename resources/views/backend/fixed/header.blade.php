@@ -15,6 +15,7 @@
                             <i class="fa-solid fa-expand"></i>
                         </div>
                     </div>
+                    @permission('backend.cart.add')
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -48,6 +49,7 @@
                             </div>
                         </div>
                     </div>
+                    @endpermission
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
                             <i class="ti-email"></i>
