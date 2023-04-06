@@ -18,6 +18,10 @@
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
                             <i class="fa-solid fa-cart-shopping"></i>
+                            @if(session()->get('cart'))
+                            <span class="ml-2">
+                                {{totalCartCount() }}</span>
+                            @endif
                             <div class="drop-down dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-content-heading">
                                     <span class="text-left">Added to cart</span>

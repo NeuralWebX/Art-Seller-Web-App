@@ -93,7 +93,14 @@ if (!function_exists('sendJson')) {
 if (!function_exists('totalPayAble')) {
     function totalPayAble()
     {
-        $totalPayAble = array_sum(array_column(session()->get('cart'),'sub_total'));
+        $totalPayAble = array_sum(array_column(session()->get('cart'), 'sub_total'));
         return $totalPayAble;
+    }
+}
+if (!function_exists('totalCartCount')) {
+    function totalCartCount()
+    {
+        $totalCart = count(session()->get('cart'));
+        return $totalCart;
     }
 }
