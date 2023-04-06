@@ -5,18 +5,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ env('APP_NAME') }}/{{ implode(' / ', array_map('ucfirst', request()->segments())) }}</title>
+    <title>{{ env('APP_NAME') }}/{{ implode(' / ', array_map('ucfirst',
+        request()->segments())) }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Standard -->
-    <link rel="shortcut icon" href="{{ url('/image/favicon.svg') }}">
+    <link rel="shortcut icon" href="{{ url('favicon.png') }}">
     <!-- Retina iPad Touch Icon-->
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ url('/image/favicon.svg') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ url('favicon.png') }}">
     <!-- Retina iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ url('/image/favicon.svg') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ url('favicon.png') }}">
     <!-- Standard iPad Touch Icon-->
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ url('/image/favicon.svg') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ url('favicon.png') }}">
     <!-- Standard iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ url('/image/favicon.svg') }}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ url('favicon.png') }}">
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url('backend/input-tags/bootstrap-tagsinput') }}">
     <link href="{{ url('backend/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
