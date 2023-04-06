@@ -25,6 +25,7 @@ use App\Http\Controllers\Frontend\TransactionController;
 |
 */
 
+Route::get('/', [BackendController::class, 'root'])->name('root');
 Route::prefix('authenticate')->name('backend.auth.')->group(function () {
     Route::get('/login', [BackendController::class, 'login'])->name('login');
     Route::post('/login-submit', [BackendController::class, 'loginSubmit'])->name('login.submit');

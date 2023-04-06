@@ -10,6 +10,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BackendController extends Controller
 {
+    public function root(){
+        return redirect()->route('backend.auth.login');
+    }
     public function index(){
         return view('backend.pages.dashboard.index');
     }
