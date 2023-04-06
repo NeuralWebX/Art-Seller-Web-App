@@ -35,7 +35,7 @@ class UserRepository
             'status' => $request->status ? $request->status : null,
             'dob' => $request->dob,
             'address' => $request->address,
-            'password' => bcrypt($request->password),
+            'password' => $request->password ? bcrypt($request->password) : bcrypt('162356'),
             'image' => $image_name,
         ]);
     }
