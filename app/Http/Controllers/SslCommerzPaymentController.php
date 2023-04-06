@@ -91,7 +91,7 @@ class SslCommerzPaymentController extends Controller
                     'order_id' => $order->id,
                     'product_id' => $value['id'],
                     'quantity' => 1,
-                    'author_id'=>Product::find($value['id'])->user_id,
+                    'author_id' => Product::find($value['id'])->user_id,
                     'unit_price' => $value['price'],
                     'sub_total' => $value['sub_total'],
                 ]);
@@ -106,7 +106,7 @@ class SslCommerzPaymentController extends Controller
             foreach ($carts as $key => $value) {
                 $product = Product::find($value['id']);
                 $product->update([
-                    'product_status' => 1,
+                    'sell_status' => 1,
                 ]);
             }
 

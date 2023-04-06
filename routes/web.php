@@ -72,6 +72,7 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('update');
         Route::get('/show/{product}', [ProductController::class, 'show'])->name('show');
         Route::get('/destroy/{product}', [ProductController::class, 'destroy'])->name('destroy');
+        Route::get('/approve/{product}', [ProductController::class, 'approve'])->name('approve');
     });
     Route::prefix('shop')->name('shop.')->group(function () {
         Route::get('/', [ShopController::class, 'index'])->name('index');

@@ -109,4 +109,18 @@ class ProductController extends Controller
             return redirect()->back();
         }
     }
+    public function approve($id)
+    {
+        $product = Product::find($id);
+        try {
+            $product->update([
+                'product_status' => 1,
+            ]);
+            alert()->success('Yaay !!', 'Product Approved Successfully');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            alert()->success('Oppss !!', 'Something went wrong');
+            return redirect()->back();
+        }
+    }
 }

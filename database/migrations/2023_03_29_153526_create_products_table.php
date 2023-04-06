@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('product_number');
             $table->decimal('product_price', 8, 2);
             $table->string('product_image');
+            $table->boolean('sell_status')->default(0);
             $table->boolean('product_status')->default(0);
             $table->timestamps();
         });

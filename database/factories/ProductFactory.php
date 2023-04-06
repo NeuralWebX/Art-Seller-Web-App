@@ -37,7 +37,8 @@ class ProductFactory extends Factory
             'product_number' => $number,
             'product_price' => $price,
             'product_image' => 'image.jpg',
-            'product_status' => $status
+            'product_status' => $status,
+            'sell_status' => $status,
         ];
     }
 }

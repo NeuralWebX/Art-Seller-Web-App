@@ -18,7 +18,8 @@
                 <th scope="col"> Category</th>
                 <th scope="col"> Author</th>
                 <th scope="col"> Uploaded</th>
-                <th scope="col"> Status</th>
+                <th scope="col"> Product Status</th>
+                <th scope="col"> Sell Status</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -33,7 +34,40 @@
                 <td>{{ $item->category->category_name }}</td>
                 <td>{{ $item->user->name }}</td>
                 <td>{{ $item->updated_at->format('Y-m-d') }}</td>
-                <td>{{ $item->product_status == 1?'Sold':'Unsold' }}</td>
+                <td>
+                    {{-- {{ $item->product_status == 1?'Active':'Pending' }} --}}
+                    @if ($item->product_status == 0)
+                    <span class="ml-2">
+                        @permission('backend.product.approve')
+                        <a href="{{ route('backend.product.approve',$item->id) }}" class="btn btn-success">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </a>
+                        @else
+                        <a href="#" class="btn btn-success">
+                            <i class="fa-solid fa-star"></i>
+                        </a>
+                        @endpermission
+                    </span>
+                    @else
+                    <span class="ml-2">
+                        <a href="#" class="btn btn-golden">
+                            <i class="fa-solid fa-star"></i>
+                        </a>
+                    </span>
+                    @endif
+                </td>
+                <td>
+                    {{-- {{ $item->sell_status == 1?'Sold':'Unsold' }} --}}
+                    @if ($item->sell_status == 1)
+                    <span class="btn btn-golden">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </span>
+                    @else
+                    <span class="btn btn-danger">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </span>
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('backend.product.show',$item->id) }}" class="btn btn-primary">
                         <i class="fa fa-eye" aria-hidden="true"></i>
