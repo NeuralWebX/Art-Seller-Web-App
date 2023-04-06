@@ -99,7 +99,8 @@
                 </label>
                 <select name="role_id" id="role_id" class="form-control">
                     @foreach (roles() as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    <option value="{{ $item->id }}" {{ $user->role_id == $item->id ? 'selected':'' }}>{{ $item->name }}
+                    </option>
                     @endforeach
                 </select>
                 <p class="form-text text-danger">
