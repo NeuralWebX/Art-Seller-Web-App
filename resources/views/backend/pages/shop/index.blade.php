@@ -10,7 +10,8 @@
             <div class="card text-white">
                 <img class="card-img-top" src="{{ $item->product_image }}" alt="Title">
                 <div class="card-body">
-                    <h4 class="card-title">{{ substr($item->product_name,0,20) }}{{ strlen($item->product_name) > 20 ? '...' : '' }}
+                    <h4 class="card-title">{{ substr($item->product_name,0,20) }}{{ strlen($item->product_name) > 20 ?
+                        '...' : '' }}
                     </h4>
                     <p class="card-text">{{ number_format($item->product_price,2) }} BDT.</p>
                     <p class="text-primary">Artist: {{ $item->user->name }}</p>
@@ -26,11 +27,7 @@
                             </span>
                         </a>
                     </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <a href="{{ route('backend.onlinePay.exampleEasyCheckout') }}" class="btn btn-primary">Purchase
-                            Now</a>
-                    </div>
+                    <div class="col-md-6"></div>
                 </div>
                 @endif
             </div>

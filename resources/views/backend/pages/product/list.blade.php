@@ -39,7 +39,7 @@
                     @if ($item->product_status == 0)
                     <span class="ml-2">
                         @permission('backend.product.approve')
-                        <a href="{{ route('backend.product.approve',$item->id) }}" class="btn btn-success">
+                        <a href="{{ route('backend.product.approve',$item->id) }}" class="btn btn-danger">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </a>
                         @else

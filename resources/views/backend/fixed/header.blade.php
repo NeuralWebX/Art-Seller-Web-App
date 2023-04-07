@@ -25,22 +25,19 @@
                             @endif
                             <div class="drop-down dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-content-heading">
-                                    <span class="text-left">Added to cart</span>
+                                    {{-- <span class="text-left">Added to cart</span> --}}
                                 </div>
                                 <div class="dropdown-content-body">
                                     <ul id="cartData">
-                                        {{-- <li>
-                                            <a href="#">
-                                                <img class="pull-left m-r-10 avatar-img"
-                                                    src="assets/images/avatar/3.jpg" alt="" />
-                                                <div class="notification-content">
-                                                    <small class="notification-timestamp pull-right">02:34
-                                                        PM</small>
-                                                    <div class="notification-heading">Mr. John</div>
-                                                    <div class="notification-text">5 members joined today </div>
-                                                </div>
-                                            </a>
-                                        </li> --}}
+                                        @if (session()->get('cart'))
+                                        <li onclick="location.href='{{ route('backend.onlinePay.exampleEasyCheckout') }}'"
+                                            class="bg-success font-bold text-white">
+                                            <a href="{{ route('backend.onlinePay.exampleEasyCheckout') }}"
+                                                class="text-white">Pay
+                                                Now <span class="ml-3"><i
+                                                        class="fa-solid fa-credit-card"></i></span></a>
+                                        </li>
+                                        @endif
                                         {{-- <li class="text-center">
                                             <a href="#" class="more-link">See All</a>
                                         </li> --}}
