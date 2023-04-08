@@ -112,3 +112,28 @@ if (!function_exists('totalViewCount')) {
         return $product->productView->sum('views');
     }
 }
+if (!function_exists('payableDue')) {
+    function payableDue()
+    {
+        $payableDue = Transaction::where('author_id', auth()->user()->id)
+            ->where('status', 0)
+            ->get();
+        return $payableDue->sum('artist_payable');
+    }
+}
+if (!function_exists('totalSold')) {
+    function totalSold()
+    {
+        $totalSold = Transaction::where('author_id', auth()->user()->id)
+            ->get();
+        return count($totalSold);
+    }
+}
+if (!function_exists('ownedItems')) {
+    function ownedItems()
+    {
+        $ownedItems = Product::where('user_id', auth()->user()->id)
+            ->get();
+        return count($ownedItems);
+    }
+}
