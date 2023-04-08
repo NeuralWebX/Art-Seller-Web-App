@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Repository\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\ProductView;
 
 class ProductController extends Controller
 {
@@ -65,6 +66,12 @@ class ProductController extends Controller
     {
         $product = $this->products->show($id);
         $products = $this->products->relatedProduct($product->category_id);
+        if (isset($product->productView)) {
+            $product->productView->createOrUpdate([
+                'product_id' => $product->id,
+                'views' => $product->productView->views,
+            ]);
+        }
         return view('backend.pages.product.show', compact('product', 'products'));
     }
 

@@ -2,6 +2,7 @@
 
 use App\Models\Role;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Settings;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
@@ -102,5 +103,16 @@ if (!function_exists('totalCartCount')) {
     {
         $totalCart = count(session()->get('cart'));
         return $totalCart;
+    }
+}
+if (!function_exists('totalViewCount')) {
+    function totalViewCount($id)
+    {
+        $product = Product::with('productView')->find($id);
+        if ($product->productView && $product->productView->views > 0) {
+            return $product->productView->views;
+        } else {
+            return '0';
+        }
     }
 }

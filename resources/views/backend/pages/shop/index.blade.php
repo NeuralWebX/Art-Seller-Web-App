@@ -27,7 +27,13 @@
                             </span>
                         </a>
                     </div>
-                    <div class="col-md-6"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-4">
+                        <span class="badge badge-primary">
+                            <span class="mr-2"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            {{totalViewCount($item->id) }}
+                        </span>
+                    </div>
                 </div>
                 @endif
             </div>
