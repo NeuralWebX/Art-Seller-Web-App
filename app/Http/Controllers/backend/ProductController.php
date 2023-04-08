@@ -66,12 +66,10 @@ class ProductController extends Controller
     {
         $product = $this->products->show($id);
         $products = $this->products->relatedProduct($product->category_id);
-        if (isset($product->productView)) {
-            $product->productView->createOrUpdate([
-                'product_id' => $product->id,
-                'views' => $product->productView->views,
-            ]);
-        }
+        ProductView::create([
+            'product_id' => $product->id,
+            'views' => 1,
+        ]);
         return view('backend.pages.product.show', compact('product', 'products'));
     }
 

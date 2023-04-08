@@ -109,10 +109,6 @@ if (!function_exists('totalViewCount')) {
     function totalViewCount($id)
     {
         $product = Product::with('productView')->find($id);
-        if ($product->productView && $product->productView->views > 0) {
-            return $product->productView->views;
-        } else {
-            return '0';
-        }
+        return $product->productView->sum('views');
     }
 }

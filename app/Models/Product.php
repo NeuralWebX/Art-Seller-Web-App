@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\ProductView;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -35,11 +36,11 @@ class Product extends Model
     /**
      * Get the user associated with the Product
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productView(): HasOne
+    public function productView(): HasMany
     {
-        return $this->hasOne(ProductView::class, 'product_id', 'id');
+        return $this->hasMany(ProductView::class, 'product_id', 'id');
     }
     public function getProductImageAttribute()
     {
