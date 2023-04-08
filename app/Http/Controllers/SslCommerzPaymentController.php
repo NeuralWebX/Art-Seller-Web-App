@@ -96,13 +96,13 @@ class SslCommerzPaymentController extends Controller
                     'sub_total' => $value['sub_total'],
                 ]);
             }
-            $transaction = Transaction::create([
-                'author_id' => 1,
-                'order_id' => $order->id,
-                'artist_payable' => $post_data['total_amount'] * 80 / 100,
-                'admin_payable' => $post_data['total_amount'] * 20 / 100,
-                'admin_paid' => $post_data['total_amount'] * 20 / 100,
-            ]);
+            // $transaction = Transaction::create([
+            //     'author_id' => 1,
+            //     'order_id' => $order->id,
+            //     'artist_payable' => $post_data['total_amount'] * 80 / 100,
+            //     'admin_payable' => $post_data['total_amount'] * 20 / 100,
+            //     'admin_paid' => $post_data['total_amount'] * 20 / 100,
+            // ]);
             foreach ($carts as $key => $value) {
                 $product = Product::find($value['id']);
                 $product->update([
@@ -132,9 +132,9 @@ class SslCommerzPaymentController extends Controller
         $card_type = $request->input('card_type');
         $currency = $request->input('currency');
         $sslc = new SslCommerzNotification();
-        $order_details = DB::table('orders')
+        $order_details = Order::with('orderDetails')
             ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'order_status', 'currency', 'amount')->first();
+            ->first();
         if ($order_details->order_status == 'Pending') {
             $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
             if ($validation) {
@@ -145,6 +145,22 @@ class SslCommerzPaymentController extends Controller
                         'payment_method' => $card_type,
                         'payment_status' => 'Paid',
                     ]);
+                $transactions = [];
+                foreach ($order_details->orderDetails as $orderDetail) {
+                    $eachProduct = $this->products->show($orderDetail->product_id);
+                    $author = $eachProduct->user;
+                    $transaction['author_id'] = $author->id;
+                    $transaction['order_id'] = $orderDetail->order_id;
+                    $transaction['product_id'] = $orderDetail->product_id;
+                    $transaction['total_amount'] =
+                        $eachProduct->product_price;
+                    $transaction['artist_payable'] =
+                        $eachProduct->product_price * 80 / 100;
+                    $transaction['admin_payable'] = $eachProduct->product_price * 20 / 100;
+                    $transaction['admin_paid'] = $transaction['admin_payable'];
+                    array_push($transactions, $transaction);
+                }
+                Transaction::insert($transactions);
             }
         } else if ($order_details->order_status == 'Processing' || $order_details->order_status == 'Complete') {
         } else {

@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreignId('order_id')->references('id')
                 ->on('orders')
                 ->restrictOnDelete();
+            $table->foreignId('product_id')->references('id')
+                ->on('products')
+                ->restrictOnDelete();
+            $table->double('total_amount', 15, 2)->nullable();
             $table->double('artist_payable', 15, 2)->nullable();
             $table->double('artist_paid', 15, 2)->nullable();
             $table->string('artist_paid_account_number')->nullable();
