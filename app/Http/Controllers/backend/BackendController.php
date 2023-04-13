@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -10,16 +11,33 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BackendController extends Controller
 {
-    public function root(){
+    public function root()
+    {
         return redirect()->route('backend.auth.login');
     }
-    public function index(){
-        return view('backend.pages.dashboard.index');
+    public function index()
+    {
+        $ordersToChartJs = DB::table('orders')
+            ->select(DB::raw('COUNT(*) as order_count, MONTH(created_at) as month'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get()
+            ->pluck('order_count')
+            ->toArray();
+
+        // Create an array of month names
+        $monthsToChartJs = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        return view('backend.pages.dashboard.index', compact('ordersToChartJs', 'monthsToChartJs'));
     }
-    public function login(){
+    public function login()
+    {
         return view('auth.login');
     }
-    public function loginSubmit(Request $request){
+    public function loginSubmit(Request $request)
+    {
         $request->validate([
             'input' => 'required',
             'password' => 'required',
@@ -29,7 +47,7 @@ class BackendController extends Controller
             Alert::success('Login Success');
             return to_route('backend.index');
         } elseif (auth()->attempt(['email' => $request->input, 'password' => $request->password])) {
-             Alert::success('Login Success');
+            Alert::success('Login Success');
             return redirect()->route('backend.index');
         } elseif (auth()->attempt(['phone' => $request->input, 'password' => $request->password])) {
             Alert::success('Login Success');
@@ -39,10 +57,10 @@ class BackendController extends Controller
             return to_route('backend.auth.login');
         }
     }
-    public function logout(){
+    public function logout()
+    {
         auth()->logout();
         Alert::success('Logout Success');
         return to_route('backend.auth.login');
-
-   }
+    }
 }
