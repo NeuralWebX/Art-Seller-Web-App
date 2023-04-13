@@ -235,7 +235,8 @@ background-position: center center;
     <footer>
         <div class="container">
             <div class="footer-content-wrapper">
-                <p class="mb-sm-0">Copyright 2022 Clinic x <span class="text-primary">Hayatunnabi Nabil</span> </p>
+                <p class="mb-sm-0">Copyright 2022 {{settings()->name}} x <span
+                        class="text-primary">{{settings()->name}}</span> </p>
                 <nav>
                     <a href="#">Terms of use.</a>
                     <a href="#">Privacy policy</a>
