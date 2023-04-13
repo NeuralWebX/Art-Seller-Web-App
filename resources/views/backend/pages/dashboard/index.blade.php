@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div id="main-content">
-            <canvas id="orders-chart"></canvas>
+            <canvas id="orderChart"></canvas>
         </div>
     </div>
     <div class="row">
@@ -33,8 +33,9 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var ctx = document.getElementById('orders-chart').getContext('2d');
+    var ctx = document.getElementById('orderChart').getContext('2d');
 
 var chart = new Chart(ctx, {
     type: 'line',
