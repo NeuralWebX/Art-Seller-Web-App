@@ -13,7 +13,7 @@ class BackendController extends Controller
 {
     public function root()
     {
-        return redirect()->route('backend.auth.login');
+        return redirect()->route('backend.exibitionEvent.index');
     }
     public function index()
     {

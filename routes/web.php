@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\AddtoCartController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\backend\CustomerOrderController;
 use App\Http\Controllers\backend\ExibitionController;
+use App\Http\Controllers\Frontend\ExibitionController as FrontendExibitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,5 +130,11 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::get('/edit/{Exibition}', [ExibitionController::class, 'edit'])->name('edit');
         Route::put('/update/{Exibition}', [ExibitionController::class, 'update'])->name('update');
         Route::get('/destroy/{Exibition}', [ExibitionController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('exibition-event')->name('exibitionEvent.')->group(function () {
+        Route::get('/index', [FrontendExibitionController::class, 'index'])->name('index');
+        Route::get('/show/{exibition_id}', [FrontendExibitionController::class, 'show'])->name('show');
+        Route::get('/submit/{exibition_id}', [FrontendExibitionController::class, 'submit'])->name('submit');
+        Route::post('/submitttion/{exibition_id}', [FrontendExibitionController::class, 'submittion'])->name('submitttion');
     });
 });
