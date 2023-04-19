@@ -1,11 +1,9 @@
 @extends('backend.master')
 @section('content')
+<div id="main-content">
+    <canvas id="orderChart"></canvas>
+</div>
 <div class="container">
-    <div class="row">
-        <div id="main-content">
-            <canvas id="orderChart"></canvas>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-4">
             <div class="card">

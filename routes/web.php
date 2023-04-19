@@ -13,6 +13,7 @@ use App\Http\Controllers\backend\SettingsController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Frontend\AddtoCartController;
 use App\Http\Controllers\Frontend\TransactionController;
+use App\Http\Controllers\backend\CustomerOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,5 +115,8 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::get('/clear-cart', [AddtoCartController::class, 'clearcart'])->name('clearcart');
         Route::get('/increase', [AddtoCartController::class, 'increase'])->name('increase');
         Route::get('/list', [AddtoCartController::class, 'list'])->name('list');
+    });
+    Route::prefix('customer-order')->name('customer-order.')->group(function () {
+        Route::get('/index', [CustomerOrderController::class, 'index'])->name('index');
     });
 });

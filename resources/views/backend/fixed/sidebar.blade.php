@@ -30,6 +30,14 @@
                     </a>
                 </li>
                 @endpermission
+                @permission('backend.customer-order.index')
+                <li>
+                    <a href="{{ route('backend.customer-order.index') }}">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        Customer Order
+                    </a>
+                </li>
+                @endpermission
                 @permission('backend.role-permission.index')
                 <li>
                     <a href="{{ route('backend.role-permission.index') }}"><i class="fa-solid fa-user-secret"></i></i>
