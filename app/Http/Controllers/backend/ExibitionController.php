@@ -58,8 +58,8 @@ class ExibitionController extends Controller
 
     public function show($Exibition)
     {
-        $Exibition = Exibition::find($Exibition);
-        return view('backend.pages.exibition.edit', compact('Exibition'));
+        $Exibition = Exibition::with('exibitionSubmittion')->find($Exibition);
+        return view('backend.pages.exibition.show', compact('Exibition'));
     }
 
     public function edit($Exibition)
