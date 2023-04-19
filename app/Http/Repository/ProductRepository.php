@@ -23,10 +23,10 @@ class ProductRepository
      */
     public function create(StoreProductRequest $request)
     {
-        $product_number = 'product-' . getNumber();
+        $product_number = 'ART-' . getNumber();
         $productExists = Product::where('product_number', $product_number)->exists();
         if ($productExists) {
-            $product_number = 'product-' . getNumber();
+            $product_number = 'ART-' . getNumber();
         }
         $image_name = null;
         if ($request->hasFile('product_image')) {

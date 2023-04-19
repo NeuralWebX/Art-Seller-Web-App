@@ -23,7 +23,7 @@ class ProductFactory extends Factory
     {
         $name = $this->faker->sentence(3);
         $details = $this->faker->text();
-        $number = 'product-' . date('y') . '-' . $this->faker->unique()->randomNumber(6);
+        $number = 'ART-' . date('y') . '-' . $this->faker->unique()->randomNumber(6);
         $price = $this->faker->randomFloat(2, 10, 500);
         $status = 0;
         $category = Category::inRandomOrder()->first();
