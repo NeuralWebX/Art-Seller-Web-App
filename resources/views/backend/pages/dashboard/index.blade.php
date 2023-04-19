@@ -43,7 +43,7 @@ var chart = new Chart(ctx, {
             label: 'Orders',
             data: {!! json_encode($ordersToChartJs) !!},
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
+            borderColor: 'rgba(230, 57, 70)',
             borderWidth: 3,
             // borderColor: Utils.CHART_COLORS.red,
             fill: false,
