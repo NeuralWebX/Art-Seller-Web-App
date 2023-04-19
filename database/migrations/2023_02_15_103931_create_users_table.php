@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->boolean('status')->default(0);
             $table->text('dob')->nullable();
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->text('image')->nullable();
             $table->text('providerID')->nullable();
             $table->timestamp('email_verified_at')->nullable();

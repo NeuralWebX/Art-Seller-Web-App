@@ -47,6 +47,14 @@ background-position: center center;
             <div class="container-fluid">
                 <section id="main-content">
                     <div class="container mt-5">
+                        <!-- Some borders are removed -->
+                        @if ($errors->any())
+                        <ul class="list-group list-group-flush">
+                            @foreach ($errors->all() as $error)
+                            <li class="list-group-item text-danger">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
                         <div class="container mt-5">
                             <form action="{{ route('backend.auth.registration') }}" method="post"
                                 enctype="multipart/form-data" class="form-group">
