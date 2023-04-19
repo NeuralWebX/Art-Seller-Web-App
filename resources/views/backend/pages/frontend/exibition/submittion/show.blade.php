@@ -25,12 +25,13 @@
 <div class="container mt-5">
     <h4 class="text-center text-primary">Exibition Submittions</h4>
 </div>
-<div class="container">
+<div class="container mb-5">
     <div class="row">
         @foreach ($Exibition->exibitionSubmittion as $item)
         <div class="col-md-3">
             <div class="card">
-                <img class="card-img-top" src="{{ url('/uploads/exibition_images',$item->image) }}" alt="Title">
+                <img style="width:300px;height:300px" src="{{ url('/uploads/exibition_images',$item->image) }}"
+                    alt="Title">
                 <div class="card-body">
                     <h4 class="card-title">{{ $item->artwork_title }}</h4>
                     <p class="card-text">{{ $item->artist_name }}</p>
