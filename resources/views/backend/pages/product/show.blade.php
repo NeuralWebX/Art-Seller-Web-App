@@ -58,6 +58,12 @@
                             </span>
                         </a>
                         @endpermission
+                        <a href="{{ route('backend.customer-order.download',$product->id) }}"
+                            class="btn btn-success ml-3">
+                            <span class="ml-3">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </span>
+                        </a>
                     </div>
                     <small class="text-primary">SKU: XXXX | Category: {{ $product->category->category_name }} |
                         Availability: {{ $product->product_status == 0?'In Stock':'Sold' }}</small>
