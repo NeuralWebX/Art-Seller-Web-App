@@ -27,9 +27,9 @@
 <div class="container">
     <div class="row">
         @foreach ($Exibition->exibitionSubmittion as $item)
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top" src="{{ url('/uploads/exibition_submittion_images',$item->image) }}"
+                <img style="width:300px;height:300px" src="{{ url('/uploads/exibition_images',$item->image) }}"
                     alt="Title">
                 <div class="card-body">
                     <h4 class="card-title">{{ $item->artwork_title }}</h4>
