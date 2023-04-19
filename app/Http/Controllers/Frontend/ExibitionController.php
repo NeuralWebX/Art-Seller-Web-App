@@ -37,12 +37,10 @@ class ExibitionController extends Controller
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
         ]);
+        $image_name = null;
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $filepath = $image->move(public_path('uploads/exibition_images'), $filename);
-        } else {
-            $filepath = null;
+            $image_name = date('Ymdhsis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('/uploads/exibition_images', $image_name);
         }
         $artwork = new ExibitionSubmittion();
         $artwork->exibition_id = $Exibition->id;
@@ -50,7 +48,7 @@ class ExibitionController extends Controller
         $artwork->artwork_number = 'ART-' . date('Ymdhsis') . '-' . Str::random(8);
         $artwork->artwork_title = $request['artwork_title'];
         $artwork->description = $request['description'];
-        $artwork->image = $filepath;
+        $artwork->image = $image_name;
         $artwork->save();
         return to_route('root');
     }
