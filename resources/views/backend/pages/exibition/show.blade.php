@@ -29,10 +29,13 @@
         @foreach ($Exibition->exibitionSubmittion as $item)
         <div class="col-md-3">
             <div class="card">
-                <img class="card-img-top" src="holder.js/100x180/" alt="Title">
+                <img class="card-img-top" src="{{ url('/uploads/exibition_submittion_images',$item->image) }}"
+                    alt="Title">
                 <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Text</p>
+                    <h4 class="card-title">{{ $item->artwork_title }}</h4>
+                    <p class="card-text">{{ $item->artist_name }}</p>
+                    <p class="card-text">{{ $item->artwork_number }}</p>
+                    <p class="card-text">{{ $item->description }}</p>
                 </div>
             </div>
         </div>

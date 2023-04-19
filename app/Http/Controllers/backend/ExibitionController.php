@@ -68,9 +68,38 @@ class ExibitionController extends Controller
         return view('backend.pages.exibition.edit', compact('Exibition'));
     }
 
-    public function update(ExhibitionRequest $request, Exibition $Exibition)
+    public function update(Request $request, $Exibition)
     {
-        $Exibition->update($request->validated());
+        $Exibition = Exibition::find($Exibition);
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
+            'image' => ['required', 'image', 'max:2048'],
+            'cover' => ['required', 'image', 'max:2048'],
+            'location' => ['required', 'string', 'max:255'],
+            'start_at' => ['required'],
+            'end_at' => ['required', 'after_or_equal:start_at'],
+        ]);
+        $Exibition->update([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'location' => $validatedData['location'],
+            'start_at' => $validatedData['start_at'],
+            'end_at' => $validatedData['end_at'],
+        ]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('uploads/exibition_images'), $filename);
+            $Exibition->image = $filename;
+        }
+        if ($request->hasFile('cover')) {
+            $cover = $request->file('cover');
+            $filename = time() . '_' . $cover->getClientOriginalName();
+            $cover->move(public_path('uploads/exibition_covers'), $filename);
+            $Exibition->cover = $filename;
+        }
+        $Exibition->save();
         return redirect()->route('backend.exibition.index');
     }
 
