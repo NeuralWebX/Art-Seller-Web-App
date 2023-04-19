@@ -118,5 +118,6 @@ Route::name('backend.')->middleware('auth')->group(function () {
     });
     Route::prefix('customer-order')->name('customer-order.')->group(function () {
         Route::get('/index', [CustomerOrderController::class, 'index'])->name('index');
+        Route::get('/download-art-if-purchased', [CustomerOrderController::class, 'download'])->name('download');
     });
 });

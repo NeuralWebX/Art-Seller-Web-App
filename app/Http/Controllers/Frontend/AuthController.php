@@ -22,7 +22,7 @@ class AuthController extends Controller
         $roles = Role::orderBy('id', 'DESC')->take(2)->get();
         return view('auth.registration', compact('roles'));
     }
-    public function registration(Request $request)
+    public function registration(StoreUserRequest $request)
     {
         try {
             $image_name = null;
@@ -44,7 +44,7 @@ class AuthController extends Controller
             ]);
             alert()->success('User Created Success');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            alert()->error($th->getMessage());
         }
         return to_route('backend.auth.login');
     }
