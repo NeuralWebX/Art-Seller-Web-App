@@ -67,6 +67,14 @@
                     </a>
                 </li>
                 @endpermission
+                @permission('backend.exibition.index')
+                <li>
+                    <a href="{{ route('backend.exibition.index') }}">
+                        <i class="fa-solid fa-qrcode"></i>
+                        Exibition
+                    </a>
+                </li>
+                @endpermission
                 @permission('backend.settings.index')
                 <li>
                     <a href="{{ route('backend.settings.index') }}"><i class="fa-solid fa-gear"></i></i>

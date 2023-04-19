@@ -14,6 +14,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Frontend\AddtoCartController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\backend\CustomerOrderController;
+use App\Http\Controllers\backend\ExibitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,5 +120,14 @@ Route::name('backend.')->middleware('auth')->group(function () {
     Route::prefix('customer-order')->name('customer-order.')->group(function () {
         Route::get('/index', [CustomerOrderController::class, 'index'])->name('index');
         Route::get('/download-art-if-purchased/{art_id}', [CustomerOrderController::class, 'download'])->name('download');
+    });
+    Route::prefix('exibition')->name('exibition.')->group(function () {
+        Route::get('/', [ExibitionController::class, 'index'])->name('index');
+        Route::get('/create', [ExibitionController::class, 'create'])->name('create');
+        Route::post('/store', [ExibitionController::class, 'store'])->name('store');
+        Route::get('/show/{Exibition}', [ExibitionController::class, 'show'])->name('show');
+        Route::get('/edit/{Exibition}', [ExibitionController::class, 'edit'])->name('edit');
+        Route::put('/update/{Exibition}', [ExibitionController::class, 'update'])->name('update');
+        Route::get('/destroy/{Exibition}', [ExibitionController::class, 'destroy'])->name('destroy');
     });
 });
