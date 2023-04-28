@@ -17,39 +17,41 @@ class BackendController extends Controller
     }
     public function index()
     {
-        if (auth()->user()->role_id == 1) {
-            $ordersToChartJs = DB::table('orders')
-                ->select(DB::raw('COUNT(*) as order_count, MONTH(created_at) as month'))
-                ->groupBy('month')
-                ->orderBy('month')
-                ->get()
-                ->pluck('order_count')
-                ->toArray();
-        } elseif (auth()->user()->role_id == 2) {
-            $ordersToChartJs = DB::table('orders')
-                ->select(DB::raw('COUNT(*) as order_count, MONTH(created_at) as month'))
-                ->where('user_id', auth()->id())
-                ->groupBy('month')
-                ->orderBy('month')
-                ->get()
-                ->pluck('order_count')
-                ->toArray();
-        } else {
-            $ordersToChartJs = DB::table('orders')
-                ->select(DB::raw('COUNT(*) as order_count, MONTH(created_at) as month'))
-                ->groupBy('month')
-                ->orderBy('month')
-                ->get()
-                ->pluck('order_count')
-                ->toArray();
-        }
+        // if (auth()->user()->role_id == 1) {
+        //     $ordersToChartJs = DB::table('orders')
+        //         ->select(DB::raw('COUNT(*) as order_count, MONTH(created_at) as month'))
+        //         ->groupBy('month')
+        //         ->orderBy('month')
+        //         ->get()
+        //         ->pluck('order_count')
+        //         ->toArray();
+        // } elseif (auth()->user()->role_id == 2) {
+        //     $ordersToChartJs = DB::table('orders')
+        //         ->select(DB::raw('COUNT(*) as order_count, MONTH(created_at) as month'))
+        //         ->where('user_id', auth()->id())
+        //         ->groupBy('month')
+        //         ->orderBy('month')
+        //         ->get()
+        //         ->pluck('order_count')
+        //         ->toArray();
+        // } else {
+        //     $ordersToChartJs = DB::table('orders')
+        //         ->select(DB::raw('COUNT(*) as order_count, MONTH(created_at) as month'))
+        //         ->groupBy('month')
+        //         ->orderBy('month')
+        //         ->get()
+        //         ->pluck('order_count')
+        //         ->toArray();
+        // }
 
-        // Create an array of month names
-        $monthsToChartJs = [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
-        ];
-        return view('backend.pages.dashboard.index', compact('ordersToChartJs', 'monthsToChartJs'));
+        // // Create an array of month names
+        // $monthsToChartJs = [
+        //     'January', 'February', 'March', 'April', 'May', 'June',
+        //     'July', 'August', 'September', 'October', 'November', 'December'
+        // ];
+        return view('backend.pages.dashboard.index'
+        // , compact('ordersToChartJs', 'monthsToChartJs')
+        );
     }
     public function login()
     {

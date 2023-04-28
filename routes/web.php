@@ -131,6 +131,8 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::put('/update/{Exibition}', [ExibitionController::class, 'update'])->name('update');
         Route::get('/destroy/{Exibition}', [ExibitionController::class, 'destroy'])->name('destroy');
     });
+});
+Route::name('backend.')->group(function () {
     Route::prefix('exibition-event')->name('exibitionEvent.')->group(function () {
         Route::get('/index', [FrontendExibitionController::class, 'index'])->name('index');
         Route::get('/show/{exibition_id}', [FrontendExibitionController::class, 'show'])->name('show');

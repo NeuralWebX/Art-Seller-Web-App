@@ -32,7 +32,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
+{{-- <script>
     var ctx = document.getElementById('orderChart').getContext('2d');
 
 var chart = new Chart(ctx, {
@@ -68,5 +68,5 @@ var chart = new Chart(ctx, {
         tension: 0.4
     }
 });
-</script>
+</script> --}}
 @endsection
