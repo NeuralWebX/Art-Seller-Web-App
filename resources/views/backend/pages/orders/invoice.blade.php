@@ -88,15 +88,15 @@
         </div>
         <div class="row">
             <div class="label">Payment Status:</div>
-            <div class="value">Pending</div>
+            <div class="value">{{ $order->payment_status }}</div>
         </div>
         <div class="row">
             <div class="label">Payment Method:</div>
-            <div class="value"></div>
+            <div class="value">{{ $order->payment_method }}</div>
         </div>
         <div class="row">
             <div class="label">Transaction ID:</div>
-            <div class="value"></div>
+            <div class="value">{{ $order->transaction_id }}</div>
         </div>
         <div class="row">
             <div class="label">Address:</div>
