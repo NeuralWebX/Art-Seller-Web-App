@@ -109,9 +109,8 @@ class SslCommerzPaymentController extends Controller
                     'sell_status' => 1,
                 ]);
             }
-
-            DB::commit();
             session()->forget('cart');
+            DB::commit();
             $sslc = new SslCommerzNotification();
             $payment_options = $sslc->makePayment($post_data, 'hosted');
             if (!is_array($payment_options)) {
@@ -119,7 +118,7 @@ class SslCommerzPaymentController extends Controller
                 $payment_options = array();
             }
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            DB::rollBack();
             alert()->error('something went wrong');
             return redirect()->route('backend.shop.index');
         }
@@ -166,6 +165,7 @@ class SslCommerzPaymentController extends Controller
         } else {
             echo "Invalid Transaction";
         }
+        session()->forget('cart');
         alert()->success('Order Placed Successfull');
         return redirect()->route('backend.shop.index');
     }
