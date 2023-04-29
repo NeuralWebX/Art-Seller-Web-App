@@ -167,7 +167,7 @@
                         </div>
                     </div> --}}
                     <hr class="mb-4">
-                    <div class="custom-control custom-checkbox">
+                    {{-- <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="same-address">
                         <input type="hidden" value="{{ totalPayAble() }}" name="amount" id="total_amount"
                             required />
@@ -178,7 +178,7 @@
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="save-info">
                         <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                    </div>
+                    </div> --}}
                     <hr class="mb-4">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"> Pay Now
                     </button>
