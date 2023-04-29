@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SettingsSeeder::class,
             RolePermissionSeeder::class,
-            CategorySeeder::class,
-            ProductSeeder::class,
+            // CategorySeeder::class,
+            // ProductSeeder::class,
         ]);
         $role = Role::where('name', '=', 'Super Admin')->first();
         $role->permissions()->sync(Permission::get()->pluck('id'));
